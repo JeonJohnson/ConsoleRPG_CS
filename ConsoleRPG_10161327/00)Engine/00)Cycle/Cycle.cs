@@ -13,7 +13,7 @@ public interface Cycle
 	void Start();
 	void Update();
 	//void LateUpdate();
-	void Render();
+	//void Render();
 	void Release(); //소멸자의 역할?
 
 

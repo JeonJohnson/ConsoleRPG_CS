@@ -11,6 +11,7 @@ namespace ConsoleRPG_10161327
 		static void Main(string[] args)
 		{
 
+			
 			while (!(GameManager.Instance.IsQuit))
 			{
 				//게임메니저의 Process 돌리기
@@ -20,9 +21,10 @@ namespace ConsoleRPG_10161327
 
 				//만약 while문 탈출하면 GameMAnager의 Release 돌려주기 
 				GameManager.Instance.Process();
-
-				
+				//Console.SetWindowSize(100, 50); //윈도우는 ㄹㅇ 띄울 창이고
 			}
+
+			GameManager.Instance.Release();
 
 		}
 	}

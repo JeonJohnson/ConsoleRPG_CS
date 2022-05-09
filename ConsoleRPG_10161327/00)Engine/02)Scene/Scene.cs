@@ -8,6 +8,7 @@ public class Scene : Cycle
 {
 	public Scene()
 	{
+
 	}
 
     public void Awake()
@@ -15,9 +16,11 @@ public class Scene : Cycle
     }
     public void Start()
     {
+        GameObjectManager.Instance.Start();
     }
     public void Update()
     {
+        GameObjectManager.Instance.Update();
     }
 
     public void Render()

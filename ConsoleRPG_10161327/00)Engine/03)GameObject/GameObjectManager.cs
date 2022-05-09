@@ -35,7 +35,7 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 	//}
 
 
-
+		
 	public void Awake()
 	{
 		gameObjectList = new List<GameObject>();
@@ -44,7 +44,10 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 
 	public void Start()
 	{
-
+		foreach (GameObject obj in gameObjectList)
+		{
+			obj.Start();
+		}
 	}
 	public void Update()
 	{

@@ -51,4 +51,11 @@ public static class Fucns
 public static class Defines
 {
 	public const int TestConstant = 1;
+
+	public const int BufferX = 64;
+	public const int BufferY = 32;
+
+	public const int WinCX = 65;
+	public const int WinCY = 33;
+
 }

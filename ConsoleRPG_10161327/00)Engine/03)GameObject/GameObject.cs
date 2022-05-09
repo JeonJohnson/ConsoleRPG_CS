@@ -63,6 +63,7 @@ public class GameObject : Cycle
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
 
+	
 
 	public T AddComponent<T>(T component) where T : Component
 	{
@@ -140,7 +141,6 @@ public class GameObject : Cycle
 		}
 
 	}
-
 	public void Render()
 	{
 	}

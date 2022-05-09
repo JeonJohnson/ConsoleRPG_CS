@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class SceneManager : Manager<SceneManager>, Cycle
+public class SceneManager : Manager<SceneManager>
 {
 
 	Scene curScene;
@@ -20,10 +20,14 @@ public class SceneManager : Manager<SceneManager>, Cycle
 	/// </summary>
 	/// 
 	public void SceneChange(int sceneNum)
-	{ }
+	{ 
+	
+	}
 
 	public void SceneChange(Enums.eScene scene)
-	{ }
+	{ 
+	
+	}
 
 	public void SceneChange(string sceneName)
 	{ 
@@ -37,7 +41,7 @@ public class SceneManager : Manager<SceneManager>, Cycle
 
 	public void Start()
 	{ 
-	
+		
 
 	}
 
@@ -46,9 +50,6 @@ public class SceneManager : Manager<SceneManager>, Cycle
 
 	}
 	public void Release()
-	{
-	}
-	public void Render()
 	{
 	}
 

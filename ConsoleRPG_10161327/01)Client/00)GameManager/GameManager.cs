@@ -3,30 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 public class GameManager : Manager<GameManager>
 {
+	public GameManager()
+	{
+		Initialize();
+	}
 
 	private bool isQuit = false;
 
 	public bool IsQuit
-	{
+	{	
         get { return isQuit; }
 		set { isQuit = value; }
 	}
-	
+
 
 	public void Initialize()
 	{
-		//여기에서 씬 다 생성해서 추가해주기.
-		
+		RenderManager.Instance.Awake();
+
+
+		SceneManager.Instance.Awake();
+		GameObjectManager.Instance.Awake();
 	}
 
 	
 	public void Process()
 	{
 		SceneManager.Instance.Update();
-		SceneManager.Instance.Render();
+
+		RenderManager.Instance.Render();
 	}
 
 	public void Release()
