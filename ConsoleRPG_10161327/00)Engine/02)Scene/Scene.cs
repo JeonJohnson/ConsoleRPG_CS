@@ -10,24 +10,22 @@ public class Scene : Cycle
 	{
 	}
 
-	void Cycle.Awake()
-	{
-	}
+    public void Awake()
+    {
+    }
+    public void Start()
+    {
+    }
+    public void Update()
+    {
+    }
 
-	void Cycle.Start()
-	{
-	}
+    public void Render()
+    {
+    }
 
-	void Cycle.Update()
-	{
-	}
-
-	void Cycle.Render()
-	{
-	}
-
-	void Cycle.Release()
-	{
-	}
+    public void Release()
+    {
+    }
 }
 

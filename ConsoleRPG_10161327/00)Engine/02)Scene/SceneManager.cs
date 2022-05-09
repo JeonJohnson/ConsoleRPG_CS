@@ -10,9 +10,7 @@ public class SceneManager : Manager<SceneManager>, Cycle
 	Scene curScene;
 	Scene nextScene;
 
-	Dictionary<string, Scene> sceneDictionary;
-
-	
+	Dictionary<string, Scene> sceneDictionary = new Dictionary<string, Scene>();
 
 	/// <summary>
 	/// 현재씬의 Cycle을 돌려줌.
@@ -20,6 +18,19 @@ public class SceneManager : Manager<SceneManager>, Cycle
 	/// =>GameObjectManager이 필요할까? 아니면 SceneManager에서 관리할ㄲㅏ?
 	/// =>GameObjectManager ㄱㄱㄱㄱ 
 	/// </summary>
+	/// 
+	public void SceneChange(int sceneNum)
+	{ }
+
+	public void SceneChange(Enums.eScene scene)
+	{ }
+
+	public void SceneChange(string sceneName)
+	{ 
+	
+	}
+
+
 	public void Awake()
 	{
 	}
