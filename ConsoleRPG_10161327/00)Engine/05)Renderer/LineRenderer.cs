@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class MainMenu : Scene
+public class LineRenderer : Renderer
 {
 
-	public override void Initailize()
+	public override void Render()
 	{
-		GameObject lineWriteTest = GameObject.Instantiate();
-
-
-
 	}
-
 }

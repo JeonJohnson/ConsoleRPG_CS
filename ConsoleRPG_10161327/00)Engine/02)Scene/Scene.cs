@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Enums;
 
-public class Scene : Cycle
+public abstract class Scene : Cycle
 {
     public Scene()
     {
@@ -19,7 +19,7 @@ public class Scene : Cycle
     {
         Scene scene = new T();
         scene.sceneName = typeof(T).Name;
-        scene.sceneNum = sceneNum;
+        scene.sceneNum = (int)sceneNum;
 
         return scene;
     }
@@ -32,30 +32,19 @@ public class Scene : Cycle
         set { sceneName = value; }
     }
 
-    eScene sceneNum;
-    public eScene SceneNum
+    int sceneNum;
+    public int SceneNum
     {
         get { return sceneNum; }
         set { sceneNum = value; }
     }
 
+    public abstract void Initailize();
 
-        
 
-    public void Awake()
-    {
-    }
-    public void Start()
-    {
-        GameObjectManager.Instance.Start();
-    }
     public void Update()
     {
         GameObjectManager.Instance.Update();
-    }
-
-    public void Render()
-    {
     }
 
     public void Release()

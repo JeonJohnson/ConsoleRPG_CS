@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JhonsonMath;
+using JohnsonMath;
 
 public class Transform : Component
 {
@@ -16,14 +16,19 @@ public class Transform : Component
     }
 
     public Vector2 position;
-    
-    //public Vector2 Position
-    //{
-    //    get { return position; }
-    //    set { position = value; }
-    //}
 
+	public override void Initailize()
+	{
+		
+	}
 
+	public override void Update()
+	{
+		
+	}
 
-
+	public override void Release()
+	{
+		
+	}
 }

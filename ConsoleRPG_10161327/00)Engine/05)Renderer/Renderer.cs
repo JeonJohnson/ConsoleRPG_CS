@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Renderer 
+public abstract class Renderer : Component
 {
+    //public Renderer(GameObject _gameObject)
+    //{
+    //    gameObject = _gameObject;
+    //}
 
-    public Renderer(GameObject _gameObject)
-    {
-        gameObject = _gameObject;
-    }
+    public Renderer()
+    { }
+
 
     ~Renderer()
     { }
@@ -20,14 +23,15 @@ public class Renderer
     //천천히 적거나 한글자씩 적는 효과는 Component로 만들어서 거기서 렌더러 참조해서 ㄱㄱ?  
     //아니면 Renderer자체의 함수나 효과로?
 
-    private GameObject gameObject = null;
+    //public GameObject gameObject = null;
 
-    private Transform transform = null;
+    public Transform transform = null;
 
-    private int renderNum = 0; //실제 화면에 출력 될 숫자
+    //protected int renderNum = 0; //실제 화면에 출력 될 숫자
 
+    public int renderQueueIndex;
 
-    public void Awake()
+    public override void Initailize()
     {
         if (gameObject != null)
         {
@@ -35,18 +39,18 @@ public class Renderer
         }
     }
 
-    public void Render()
-    { 
-            
-    
-    
-    }
+	public override void Update()
+	{
+	}
+	public override void ReadyRender()
+	{
+        RenderManager.Instance.InsertRenderList(this,renderQueueIndex);
+	}
+
+	public abstract void Render();
 
 
-    public void Release()
-    { 
-    
-    }
-    
+    public override void Release()
+    { }
 
 }

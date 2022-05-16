@@ -12,12 +12,12 @@ sealed public class GameObject : Cycle
 		tag = (int)desc.tag;
 		layer = (int)desc.layer;
 
-		Awake();
+		//Awake();
 	}
 
 	public GameObject()
 	{
-		Awake();
+		Initailize();
 	}
 
 	~GameObject()
@@ -53,10 +53,14 @@ sealed public class GameObject : Cycle
 		return newObj;
 	}
 
-
-	public static void Destory(GameObject gameObject)
+	public static void Destroy(GameObject gameObject)
 	{
+		gameObject.isDead = true;
+	}
 
+	public static void DontDestroy(GameObject gameObject)
+	{
+		gameObject.IsDontDestroyed = true;
 	}
 
 	string name;
@@ -87,7 +91,30 @@ sealed public class GameObject : Cycle
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
 
-	Renderer renderer = null;
+	bool isActive = true;
+	public bool IsActive
+	{
+		get { return isActive; }
+		set { isActive = value; }
+	}
+
+	bool isDead = false;
+	public bool IsDead
+	{
+		get { return isDead; }
+		set { isDead = value; }
+	}
+
+	bool isDontDestroyed = false;
+	public bool IsDontDestroyed
+	{
+		get { return IsDontDestroyed; }
+		set { isDontDestroyed = value; }
+	}
+
+	public Transform transform = null;
+
+	//Renderer renderer = null;
 
 	public T AddComponent<T>(T component = null) where T : Component, new()
 	{
@@ -137,7 +164,7 @@ sealed public class GameObject : Cycle
 		return null;
 	}
 
-	private void NewComponentsInsert()
+	private void MergeNewComponents()
 	{
 		if (newComponents.Count == 0)
 		{
@@ -153,33 +180,25 @@ sealed public class GameObject : Cycle
 
 	}
 
-	public void Awake()
+	public void Initailize()
 	{
 		//components = new List<KeyValuePair<string, Component>>();
 		//newComponents = new List<KeyValuePair<string, Component>>();
-	}
 
-	public void Start()
-	{
+		//transform = new Transform();
+		this.AddComponent<Transform>();
 	}
 
 	public void Update()
 	{
 		//1. new Component 애들 Component로 넣어주고 초기화 돌리기
-		NewComponentsInsert();
+		MergeNewComponents();
 
 		foreach (KeyValuePair<string, Component> com in components)
 		{
 			com.Value.Update();
 		}
 
-	}
-	public void Render()
-	{
-		if (renderer != null)
-		{
-			renderer.Render();
-		}
 	}
 	public void Release()
 	{

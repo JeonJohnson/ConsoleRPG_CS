@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 public class RenderManager : Manager<RenderManager>
 {
-	public RenderManager()
-	{ 
-	}
 
-	
+
+
+	Dictionary<int, List<Renderer>> renderQueue;
 
 	public void WindowSetting()
 	{
@@ -38,12 +37,36 @@ public class RenderManager : Manager<RenderManager>
 		//}
 	}
 
-	public void Awake()
+	public void InsertRenderList(Renderer renderer, int renderIndex)
 	{
-		WindowSetting();
+		renderQueue[renderIndex].Add(renderer);
+	}
+
+	public void ClearRenderList()
+	{
+		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
+		{
+			//List<Renderer> temp = new List<Renderer>();
+			renderQueue[i].Clear();
+		}
 	}
 
 
+	public void Initailize()
+	{
+		WindowSetting();
+
+		renderQueue = new Dictionary<int, List<Renderer>>();
+
+		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
+		{
+			List<Renderer> temp = new List<Renderer>();
+			renderQueue.Add(i,temp);
+		}
+	}
+
+
+	
 	public void Render()
 	{
 		Console.SetWindowSize(Defines.WinCX, Defines.WinCY); //윈도우는 ㄹㅇ 띄울 창의 크기고 => 
@@ -53,7 +76,19 @@ public class RenderManager : Manager<RenderManager>
 		//테두리 렌더링
 		//UI(글자들) 렌더링
 		//객체들 랜더링
+
+		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
+		{
+			for (int k = 0; k < renderQueue[i].Count; ++k)
+			{
+				renderQueue[i][k].Render();
 			}
+		
+		}
+
+		ClearRenderList();
+
+	}
 	
 
 }

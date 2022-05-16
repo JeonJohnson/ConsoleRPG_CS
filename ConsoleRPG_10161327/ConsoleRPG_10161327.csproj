@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="00%29Engine\00%29Cycle\Cycle.cs" />
+    <Compile Include="00%29Engine\00%29Cycle\Cycle_abstract.cs" />
     <Compile Include="00%29Engine\02%29Scene\Scene.cs" />
     <Compile Include="00%29Engine\03%29GameObject\GameObject.cs" />
     <Compile Include="00%29Engine\03%29GameObject\GameObjectManager.cs" />
@@ -56,16 +57,16 @@
     <Compile Include="01%29Client\00%29GameManager\GameManager.cs" />
     <Compile Include="00%29Engine\02%29Scene\SceneManager.cs" />
     <Compile Include="01%29Client\01%29Scene\MainMenu.cs" />
-    <Compile Include="98%29Library\JhonsonLibrary.cs" />
-    <Compile Include="98%29Library\JhonsonMath.cs" />
+    <Compile Include="00%29Engine\05%29Renderer\LineRenderer.cs" />
+    <Compile Include="01%29Client\02%29Objects\UI_Boundary.cs" />
+    <Compile Include="98%29Library\JohnsonLibrary.cs" />
+    <Compile Include="98%29Library\JohnsonMath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="99%29Etc\App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="01%29Client\02%29Objects\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

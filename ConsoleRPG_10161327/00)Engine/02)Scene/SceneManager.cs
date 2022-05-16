@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class SceneManager : Manager<SceneManager>
+public class SceneManager : Manager<SceneManager> , Cycle
 {
 
 
@@ -105,33 +105,12 @@ public class SceneManager : Manager<SceneManager>
 		nextScene = sceneDictionary[(int)scene];
 	}
 
-	
-	
 	public void NextSceneChange()
 	{
+		isSceneChange = true;
 		int num = (int)curScene.SceneNum;
-
 		++num;
-
 		SceneChange((Enums.eScene)num);
-	}
-
-
-	public void Awake()
-	{
-	}
-
-	public void Start()
-	{ 
-		
-
-	}
-
-	public void Update()
-	{
-		SceneChangeCheck();
-
-		curScene.Update();
 	}
 
 	public void SceneChangeCheck()
@@ -142,18 +121,36 @@ public class SceneManager : Manager<SceneManager>
 		}
 
 		curScene.Release();
-		//GameObjectManager에서 오브젝트들 지워주기
+		GameObjectManager.Instance.Release_Scene();
 		//Dont Destoryed 된 게임오브젝트 넘겨주기
-		nextScene.Awake();
+		nextScene.Initailize();
 
 		preScene = curScene;
 		curScene = nextScene;
+		nextScene = null;
 
 		isSceneChange = false;
 	}
+
+	public void Initailize()
+	{
+	}
+
+
+	public void Update()
+	{
+		GameObjectManager.Instance.Update();
+	}
+
+	public void Render()
+	{
+		RenderManager.Instance.Render();
+	}
+
+
 	public void Release()
 	{
-
+		//GameObjectManager에서 오브젝트들 지워주기
 	}
 
 }

@@ -36,6 +36,12 @@ namespace Enums
 		End
 	}
 
+	public enum eRenderQueue
+	{
+		Boundary,
+
+		End
+	}
 }
 
 public static class Fucns

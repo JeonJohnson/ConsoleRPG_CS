@@ -23,20 +23,17 @@ public class GameManager : Manager<GameManager>
 
 	public void Initialize()
 	{
-		RenderManager.Instance.Awake();
-
-
-		SceneManager.Instance.Awake();
-		GameObjectManager.Instance.Awake();
+		RenderManager.Instance.Initailize();
+		SceneManager.Instance.Initailize();
+		GameObjectManager.Instance.Initailize();
 	}
 
 	
 	public void Process()
 	{
-		SceneManager.Instance.Update();
-
-		RenderManager.Instance.Render();
-		GameObjectManager.Instance.Render();
+		SceneManager.Instance.SceneChangeCheck();
+		SceneManager.Instance.Update();//여기 안에서 GameObjMgr update 돌림
+		SceneManager.Instance.Render();//여기 안에서 RenderMgr Render 돌림
 	}
 
 	public void Release()
