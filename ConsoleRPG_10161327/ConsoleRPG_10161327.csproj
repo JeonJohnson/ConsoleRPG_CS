@@ -49,12 +49,15 @@
     <Compile Include="00%29Engine\03%29GameObject\GameObjectManager.cs" />
     <Compile Include="00%29Engine\04%29Component\Component.cs" />
     <Compile Include="00%29Engine\01%29Manager\Manager.cs" />
+    <Compile Include="00%29Engine\04%29Component\RectTransform.cs" />
+    <Compile Include="00%29Engine\04%29Component\Transform.cs" />
     <Compile Include="00%29Engine\05%29Renderer\Renderer.cs" />
     <Compile Include="00%29Engine\05%29Renderer\RenderManager.cs" />
     <Compile Include="01%29Client\00%29GameManager\GameManager.cs" />
     <Compile Include="00%29Engine\02%29Scene\SceneManager.cs" />
     <Compile Include="01%29Client\01%29Scene\MainMenu.cs" />
     <Compile Include="98%29Library\JhonsonLibrary.cs" />
+    <Compile Include="98%29Library\JhonsonMath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class GameObject : Cycle
+sealed public class GameObject : Cycle
 {
 	public GameObject(Structs.GameObjectDesc desc)
 	{
@@ -27,9 +27,33 @@ public class GameObject : Cycle
 	{
 		GameObject newObj = new GameObject(desc);
 
+		//만들어야함.
+
+
+		GameObjectManager.Instance.AddGameObject(newObj);
 
 		return newObj;
 	}
+
+	public static GameObject Instantiate(Structs.GameObjectDesc desc)
+	{
+		GameObject newObj = new GameObject(desc);
+
+		GameObjectManager.Instance.AddGameObject(newObj);
+
+		return newObj;
+	}
+
+	public static GameObject Instantiate()
+	{
+		GameObject newObj = new GameObject();
+
+
+		GameObjectManager.Instance.AddGameObject(newObj);
+		return newObj;
+	}
+
+
 	public static void Destory(GameObject gameObject)
 	{
 
@@ -63,19 +87,28 @@ public class GameObject : Cycle
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
 
-	
+	Renderer renderer = null;
 
-	public T AddComponent<T>(T component) where T : Component
+	public T AddComponent<T>(T component = null) where T : Component, new()
 	{
-		string componentName = typeof(T).Name;
-
 		if (this.GetComponent<T>() != null)
 		{
 			return null;
 		}
-		KeyValuePair<string, Component> tempComponent = new KeyValuePair<string, Component>(componentName,component);
 
-		newComponents.Add(tempComponent);
+		string componentName = typeof(T).Name;
+
+		T tempComponent = component;
+
+		if (tempComponent == null)
+		{
+			tempComponent = new T();
+		}
+		tempComponent.gameObject = this;
+
+		KeyValuePair<string, Component> componentPair = new KeyValuePair<string, Component>(componentName,tempComponent);
+
+		newComponents.Add(componentPair);
 
 		return component;
 	}
@@ -104,7 +137,7 @@ public class GameObject : Cycle
 		return null;
 	}
 
-	public void NewComponetsInsert()
+	private void NewComponentsInsert()
 	{
 		if (newComponents.Count == 0)
 		{
@@ -133,7 +166,7 @@ public class GameObject : Cycle
 	public void Update()
 	{
 		//1. new Component 애들 Component로 넣어주고 초기화 돌리기
-		NewComponetsInsert();
+		NewComponentsInsert();
 
 		foreach (KeyValuePair<string, Component> com in components)
 		{
@@ -143,6 +176,10 @@ public class GameObject : Cycle
 	}
 	public void Render()
 	{
+		if (renderer != null)
+		{
+			renderer.Render();
+		}
 	}
 	public void Release()
 	{

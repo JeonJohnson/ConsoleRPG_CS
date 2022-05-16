@@ -38,8 +38,6 @@ public class RenderManager : Manager<RenderManager>
 		//}
 	}
 
-
-
 	public void Awake()
 	{
 		WindowSetting();
@@ -50,8 +48,12 @@ public class RenderManager : Manager<RenderManager>
 	{
 		Console.SetWindowSize(Defines.WinCX, Defines.WinCY); //윈도우는 ㄹㅇ 띄울 창의 크기고 => 
 
+		Console.Clear();
 
-	}
+		//테두리 렌더링
+		//UI(글자들) 렌더링
+		//객체들 랜더링
+			}
 	
 
 }

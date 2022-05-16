@@ -36,6 +36,7 @@ public class GameManager : Manager<GameManager>
 		SceneManager.Instance.Update();
 
 		RenderManager.Instance.Render();
+		GameObjectManager.Instance.Render();
 	}
 
 	public void Release()
