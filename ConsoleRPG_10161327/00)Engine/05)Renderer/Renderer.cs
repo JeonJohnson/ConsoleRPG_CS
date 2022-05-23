@@ -24,10 +24,13 @@ public abstract class Renderer : Component
     //아니면 Renderer자체의 함수나 효과로?
 
     //public GameObject gameObject = null;
-
+    
     public Transform transform = null;
 
     //protected int renderNum = 0; //실제 화면에 출력 될 숫자
+
+    //private char[] t
+
 
     public int renderQueueIndex;
 

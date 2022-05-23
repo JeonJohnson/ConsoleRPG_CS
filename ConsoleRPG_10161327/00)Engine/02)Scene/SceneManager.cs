@@ -33,6 +33,8 @@ public class SceneManager : Manager<SceneManager> , Cycle
 		{
 			sceneDictionary.Add((int)scene.SceneNum, scene);
 		}
+
+		//Dictionary<int, Scene> temp = sceneDictionary.OrderBy(x => x.Key).ToDictionary(x=>x.Key, x=>x.Value); 
     }
 	public Scene SetFirstScene(Enums.eScene sceneNum)
 	{ 
@@ -56,7 +58,7 @@ public class SceneManager : Manager<SceneManager> , Cycle
 		return null;
 	}
 
-	public Scene SetFirstScene<T>(T scene) where T : Scene
+	public Scene SetFirstScene<T>() where T : Scene
 	{
 		foreach (KeyValuePair<int, Scene> scenePair in sceneDictionary)
 		{
@@ -70,11 +72,9 @@ public class SceneManager : Manager<SceneManager> , Cycle
 				{
 					return null;
 				}
-
 				return scenePair.Value;
 			}
 		}
-
 		return null;
 	}
 

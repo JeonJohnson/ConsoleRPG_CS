@@ -21,11 +21,31 @@ public class GameManager : Manager<GameManager>
 	}
 
 
+	public void SceneSetting()
+	{
+		Scene titleMenu = Scene.Instantiate<TitleMenu>(Enums.eScene.TitleMenu);
+		Scene charSelect = Scene.Instantiate<CharacterSelect>(Enums.eScene.CharacterSelect);
+		Scene mainMenu = Scene.Instantiate<MainMenu>(Enums.eScene.MainMenu);
+		Scene shop = Scene.Instantiate<Shop>(Enums.eScene.Shop);
+		Scene inventory = Scene.Instantiate<Inventory>(Enums.eScene.Inventory);
+		Scene dungeon = Scene.Instantiate<Dungeon>(Enums.eScene.Dungeon);
+
+		SceneManager.Instance.InsertScene(titleMenu, charSelect, mainMenu, shop, inventory, dungeon);
+	}
+
 	public void Initialize()
 	{
 		RenderManager.Instance.Initailize();
 		SceneManager.Instance.Initailize();
 		GameObjectManager.Instance.Initailize();
+
+		//scene Setting//
+		SceneSetting();
+		SceneManager.Instance.SetFirstScene<TitleMenu>();
+
+
+
+	
 	}
 
 	

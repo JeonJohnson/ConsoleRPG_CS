@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//public class UI_Boundary : 
-//{
+class Dungeon : Scene
+{
 
+    public override void Initailize()
+    {
+        throw new NotImplementedException();
+    }
 
-//}
+}

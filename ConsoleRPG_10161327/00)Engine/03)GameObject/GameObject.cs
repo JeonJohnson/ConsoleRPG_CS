@@ -84,7 +84,6 @@ sealed public class GameObject : Cycle
         set { Layer = (int)value; }
     }
 
-
     //<componet 클래스 이름, ㄹㅇ 찐 객체>
     List<KeyValuePair<string, Component>> components =  new List<KeyValuePair<string, Component>>();
 	List<KeyValuePair<string, Component>> newComponents = new List<KeyValuePair<string, Component>>();

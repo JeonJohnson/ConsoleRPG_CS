@@ -10,7 +10,7 @@ namespace JohnsonMath
     public struct Vector2
     {
 
-        public Vector2(float _x = 0, float _y = 0)
+        public Vector2(int _x = 0, int _y = 0)
         {
             x = _x;
             y = _y;
@@ -36,14 +36,14 @@ namespace JohnsonMath
             return temp;
         }
 
-        public float x;
-        public float y;
+        public int x;
+        public int y;
 
         //public float magnitude;
 
         public static Vector2 Zero()
         {
-            return new Vector2(0f, 0f);
+            return new Vector2(0, 0);
         }
 
         

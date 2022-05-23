@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class LineRenderer : Renderer
+class CharacterSelect : Scene
 {
+    
+    public override void Initailize()
+    {
+        
+    }
 
-	public override void Render()
-	{
-	}
 }

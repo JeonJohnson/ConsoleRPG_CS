@@ -25,14 +25,15 @@ public abstract class Scene : Cycle
     }
 
 
-    string sceneName;
+    protected string sceneName;
+
     public string SceneName
     {
         get { return sceneName; }
         set { sceneName = value; }
     }
 
-    int sceneNum;
+    protected int sceneNum;
     public int SceneNum
     {
         get { return sceneNum; }

@@ -33,13 +33,19 @@ namespace Enums
 
 	public enum eScene
 	{ 
+		TitleMenu,
+		CharacterSelect,
+		MainMenu,
+		Inventory,
+		Shop,
+		Dungeon,
 		End
 	}
 
 	public enum eRenderQueue
 	{
 		Boundary,
-
+		Objects,
 		End
 	}
 }
@@ -65,5 +71,4 @@ public static class Defines
 
 	public const int WinCX = 65;
 	public const int WinCY = 33;
-
 }

@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 public class MainMenu : Scene
 {
+	
+
+	GameObject	InGameWindow;
+	GameObject	Title;
+	GameObject	InputWindow;
 
 	public override void Initailize()
 	{
-		GameObject lineWriteTest = GameObject.Instantiate();
+		
 
+		InGameWindow = GameObject.Instantiate();
+		
 
 
 	}

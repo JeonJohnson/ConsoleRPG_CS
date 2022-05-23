@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 public class RenderManager : Manager<RenderManager>
 {
-
-
-
 	Dictionary<int, List<Renderer>> renderQueue;
+
+
+	char[,] preRenderBuffer = new char[Defines.BufferX, Defines.BufferY];
+	char[,] curRenderBuffer = new char[Defines.BufferX, Defines.BufferY];
 
 	public void WindowSetting()
 	{
@@ -69,22 +70,32 @@ public class RenderManager : Manager<RenderManager>
 	
 	public void Render()
 	{
-		Console.SetWindowSize(Defines.WinCX, Defines.WinCY); //윈도우는 ㄹㅇ 띄울 창의 크기고 => 
+		//Console.SetWindowSize(Defines.WinCX, Defines.WinCY); //윈도우는 ㄹㅇ 띄울 창의 크기고 => 
 
-		Console.Clear();
+
+		//Console.Clear();
+		//깜빡임 심함
+		//+각 렌더 큐 옵젝들마다 화면크기 만큼 가지고 있어야 겠지
+
+		//한 렌더 큐 옵젝들을 모아서 하나의 64*32 배열 만들기
+		//각 렌더 큐의 배열을 만들어서 순서대로 덮어쓰기
+		//그 전에 렌더한 배열과 비교하여 다른부분만 바꾼다음에 출력해주기.
+
+
+		//0523 렌더큐의 개념을 없애기???
+
+
 
 		//테두리 렌더링
-		//UI(글자들) 렌더링
-		//객체들 랜더링
+		//UI(객체들) 렌더링
 
-		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
-		{
-			for (int k = 0; k < renderQueue[i].Count; ++k)
-			{
-				renderQueue[i][k].Render();
-			}
-		
-		}
+		//for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
+		//{
+		//	for (int k = 0; k < renderQueue[i].Count; ++k)
+		//	{
+		//		renderQueue[i][k].Render();
+		//	}
+		//}
 
 		ClearRenderList();
 

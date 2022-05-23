@@ -16,7 +16,8 @@ public class Transform : Component
     }
 
     public Vector2 position;
-
+	//글자가 시작 되는 부분 (중심아님!)
+	//앵간하면 0,0 고정일듯
 	public override void Initailize()
 	{
 		
