@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class RenderManager : Manager<RenderManager>
 {
-	Dictionary<int, List<Renderer>> renderQueue;
+	SortedDictionary<int, List<Renderer>> renderQueue;
 
 
 	char[,] preRenderBuffer = new char[Defines.BufferX, Defines.BufferY];
@@ -57,7 +57,7 @@ public class RenderManager : Manager<RenderManager>
 	{
 		WindowSetting();
 
-		renderQueue = new Dictionary<int, List<Renderer>>();
+		renderQueue = new SortedDictionary<int, List<Renderer>>();
 
 		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
 		{
@@ -85,17 +85,20 @@ public class RenderManager : Manager<RenderManager>
 		//0523 렌더큐의 개념을 없애기???
 
 
-
 		//테두리 렌더링
 		//UI(객체들) 렌더링
 
-		//for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
-		//{
-		//	for (int k = 0; k < renderQueue[i].Count; ++k)
-		//	{
-		//		renderQueue[i][k].Render();
-		//	}
-		//}
+		for (int i = 0; i < (int)Enums.eRenderQueue.End; ++i)
+		{
+			for (int k = 0; k < renderQueue[i].Count; ++k)
+			{
+				renderQueue[i][k].Render();
+			}
+		}
+
+
+
+
 
 		ClearRenderList();
 

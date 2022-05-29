@@ -41,11 +41,7 @@ public class GameManager : Manager<GameManager>
 
 		//scene Setting//
 		SceneSetting();
-		SceneManager.Instance.SetFirstScene<TitleMenu>();
-
-
-
-	
+		SceneManager.Instance.SetFirstScene<TitleMenu>();	
 	}
 
 	
@@ -53,6 +49,7 @@ public class GameManager : Manager<GameManager>
 	{
 		SceneManager.Instance.SceneChangeCheck();
 		SceneManager.Instance.Update();//여기 안에서 GameObjMgr update 돌림
+		SceneManager.Instance.ReadyRender();
 		SceneManager.Instance.Render();//여기 안에서 RenderMgr Render 돌림
 	}
 

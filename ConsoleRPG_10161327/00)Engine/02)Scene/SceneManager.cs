@@ -16,7 +16,7 @@ public class SceneManager : Manager<SceneManager> , Cycle
 
 	//Dictionary<string, Scene> sceneDictionary = new Dictionary<string, Scene>();
 	//List<Scene> sceneList = new List<Scene>();
-    Dictionary<int, Scene> sceneDictionary = new Dictionary<int, Scene>();
+    SortedDictionary<int, Scene> sceneDictionary = new SortedDictionary<int, Scene>();
 
 	 
     /// <summary>
@@ -66,7 +66,9 @@ public class SceneManager : Manager<SceneManager> , Cycle
 			{
 				if (curScene == null)
 				{
+					scenePair.Value.Initailize();
 					curScene = scenePair.Value;
+
 				}
 				else
 				{
@@ -140,6 +142,12 @@ public class SceneManager : Manager<SceneManager> , Cycle
 	public void Update()
 	{
 		GameObjectManager.Instance.Update();
+	}
+
+	public void ReadyRender()
+	{
+
+		GameObjectManager.Instance.ReadyRender();
 	}
 
 	public void Render()

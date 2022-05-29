@@ -140,6 +140,16 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 
 	}
 
+	public void ReadyRender()
+	{
+		foreach (GameObject obj in gameObjectList)
+		{
+			obj.ReadyRender();
+		}
+
+	}
+
+
 
 	public void Release()
 	{

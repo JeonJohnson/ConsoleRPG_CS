@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public abstract class Renderer : Component
+public class Renderer : Component
 {
     //public Renderer(GameObject _gameObject)
     //{
@@ -34,6 +34,24 @@ public abstract class Renderer : Component
 
     public int renderQueueIndex;
 
+    private string renderStr;
+    public string RenderStr
+    { 
+        get
+		{
+            return renderStr;
+		}
+        set { renderStr = value; }
+    }
+
+    public static Renderer Instantiate()
+    {
+        Renderer newRenderer = new Renderer();
+        //GameObjectManager.Instance.AddGameObject(newObj);
+        
+        return newRenderer;
+    }
+
     public override void Initailize()
     {
         if (gameObject != null)
@@ -50,7 +68,11 @@ public abstract class Renderer : Component
         RenderManager.Instance.InsertRenderList(this,renderQueueIndex);
 	}
 
-	public abstract void Render();
+    public void Render()
+    {
+        Console.SetCursorPosition(transform.position.x, transform.position.y);
+        Console.Write(renderStr);
+    }
 
 
     public override void Release()

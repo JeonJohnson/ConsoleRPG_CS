@@ -7,43 +7,28 @@ using System.Threading.Tasks;
 public class LineRenderer : Renderer
 {
 
-
-	private string renderLine;
-
-    public string RenderLine
-    {
-        get 
-        {
-            return renderLine;
-        }
-        set 
-        {
-            renderLine = value;
-        }
-    }
-
-    public override void Initailize()
-    {
-        base.Initailize();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-    }
-
-    public override void ReadyRender()
-    {
-        base.ReadyRender();
-    }
-
-    public override void Render()
+	public override void Initailize()
 	{
+		base.Initailize();
+		for (int i = 0; i < 31; ++i)
+		{
+			RenderStr += '*';
+		}
 	}
-    
 
-    public override void Release()
-    {
-        base.Release();
-    }
+	public override void Update()
+	{
+		base.Update();
+	}
+
+	public override void ReadyRender()
+	{
+		base.ReadyRender();
+	}
+
+
+	public override void Release()
+	{
+		base.Release();
+	}
 }

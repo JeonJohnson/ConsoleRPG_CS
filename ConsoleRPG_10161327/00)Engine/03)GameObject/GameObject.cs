@@ -90,6 +90,9 @@ sealed public class GameObject : Cycle
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
 
+	List<Renderer> renderers = new List<Renderer>();
+
+
 	bool isActive = true;
 	public bool IsActive
 	{
@@ -115,6 +118,40 @@ sealed public class GameObject : Cycle
 
 	//Renderer renderer = null;
 
+	public Renderer AddRenderer(Renderer renderer)
+	{
+
+		renderer.gameObject = this;
+		renderer.Initailize();
+		renderers.Add(renderer);
+
+		return renderer;
+	}
+
+	public T AddRenderer<T>(T renderer = null) where T : Renderer, new()
+	{
+		if (renderer == null)
+		{
+			T tempRenderer = new T();
+
+			tempRenderer.gameObject = this;
+			tempRenderer.Initailize();
+			renderers.Add(tempRenderer);
+
+			return tempRenderer;
+		}
+		else
+		{
+			renderer.gameObject = this;
+			renderer.Initailize();
+			renderers.Add(renderer);
+
+			return renderer;
+		}	
+	
+
+	}
+
 	public T AddComponent<T>(T component = null) where T : Component, new()
 	{
 		if (this.GetComponent<T>() != null)
@@ -124,17 +161,34 @@ sealed public class GameObject : Cycle
 
 		string componentName = typeof(T).Name;
 
-		T tempComponent = component;
 
-		if (tempComponent == null)
-		{
-			tempComponent = new T();
-		}
-		tempComponent.gameObject = this;
+		//if (componentName == "Renderer")
+		//{
+		//	T tempRenderer = component;
 
-		KeyValuePair<string, Component> componentPair = new KeyValuePair<string, Component>(componentName,tempComponent);
+		//	if (tempRenderer == null)
+		//	{
+		//		tempRenderer = new T();
+		//	}
+		//	tempRenderer.gameObject = this;
 
-		newComponents.Add(componentPair);
+		//	renderers.Add(tempRenderer);
+
+		//}
+		//else 
+		//{
+			T tempComponent = component;
+
+			if (tempComponent == null)
+			{
+				tempComponent = new T();
+			}
+			tempComponent.gameObject = this;
+
+			KeyValuePair<string, Component> componentPair = new KeyValuePair<string, Component>(componentName, tempComponent);
+
+			newComponents.Add(componentPair);
+
 
 		return component;
 	}
@@ -185,7 +239,7 @@ sealed public class GameObject : Cycle
 		//newComponents = new List<KeyValuePair<string, Component>>();
 
 		//transform = new Transform();
-		this.AddComponent<Transform>();
+		transform = this.AddComponent<Transform>();
 	}
 
 	public void Update()
@@ -197,8 +251,17 @@ sealed public class GameObject : Cycle
 		{
 			com.Value.Update();
 		}
+	}
+
+	public void ReadyRender()
+	{
+		foreach (Renderer renderer in renderers)
+		{
+			renderer.ReadyRender();
+		}
 
 	}
+
 	public void Release()
 	{
 	}

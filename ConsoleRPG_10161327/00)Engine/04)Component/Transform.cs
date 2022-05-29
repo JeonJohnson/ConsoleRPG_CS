@@ -8,7 +8,8 @@ using JohnsonMath;
 public class Transform : Component
 {
     public Transform()
-    { 
+    {
+		position = new Vector2();
     }
 
     ~Transform()

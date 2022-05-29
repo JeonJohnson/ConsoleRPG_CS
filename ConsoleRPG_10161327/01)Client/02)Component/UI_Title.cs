@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 class UI_Title : Component
 {
+
     public override void Initailize()
     {
-        throw new NotImplementedException();
+        gameObject.transform.position = new JohnsonMath.Vector2();
+        
+    }
+
+    public override void Update()
+    {
+
     }
 
     public override void ReadyRender()
@@ -18,11 +25,7 @@ class UI_Title : Component
 
     public override void Release()
     {
-        throw new NotImplementedException();
+        
     }
 
-    public override void Update()
-    {
-        throw new NotImplementedException();
-    }
 }
