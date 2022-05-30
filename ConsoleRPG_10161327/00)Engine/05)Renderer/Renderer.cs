@@ -65,13 +65,14 @@ public class Renderer : Component
 	}
 	public override void ReadyRender()
 	{
+       
         RenderManager.Instance.InsertRenderList(this,renderQueueIndex);
 	}
 
     public void Render()
     {
-        Console.SetCursorPosition(transform.position.x, transform.position.y);
-        Console.Write(renderStr);
+        //Console.SetCursorPosition(transform.position.x, transform.position.y);
+        //Console.Write(renderStr);
     }
 
 

@@ -16,14 +16,24 @@ class TitleMenu : Scene
         titleName.AddRenderer(titleRender);
 
 
-        GameObject titleLine = GameObject.Instantiate();
-        titleLine.transform.position = new JohnsonMath.Vector2(0, 1);
-        titleLine.AddRenderer<LineRenderer>();
-                
+
+        GameObject titleName2 = GameObject.Instantiate();
+        titleName2.AddComponent<UI_Title>();
+        titleName2.GetComponent<Transform>().position.x = 1;
+
+
+        Renderer titleRender2 = Renderer.Instantiate();
+        titleRender2.RenderStr = "************************";
+        titleName2.AddRenderer(titleRender2);
+
+        //GameObject titleLine = GameObject.Instantiate();
+        //titleLine.transform.position = new JohnsonMath.Vector2(0, 1);
+        //titleLine.AddRenderer<LineRenderer>();
 
 
 
-        
+
+
 
     }
 }
