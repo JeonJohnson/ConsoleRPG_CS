@@ -15,7 +15,6 @@ class TitleMenu : Scene
         sceneNameRender.RenderStr = "Title Menu";
         sceneName.AddRenderer(sceneNameRender);
 
-
         GameObject sceneNameBoader = GameObject.Instantiate();
         sceneNameBoader.AddComponent<UI_Title>();
         sceneNameBoader.GetComponent<Transform>().position.x = 1;
@@ -48,11 +47,11 @@ class TitleMenu : Scene
         exitButton.AddRenderer<Renderer>().RenderStr = "2. Game Exit";
 
 
-        GameObject selectNum = GameObject.Instantiate();
-        selectNum.transform.position.x = 20;
-        selectNum.AddComponent<InputCheck>();
-        //selectNum.AddRenderer<Renderer>().RenderStr = "Input : ";
+		GameObject selectNum = GameObject.Instantiate();
+		selectNum.transform.position.x = 20;
+		selectNum.AddComponent<InputCheck>();
+		//selectNum.AddRenderer<Renderer>().RenderStr = "Input : ";
 
 
-    }
+	}
 }

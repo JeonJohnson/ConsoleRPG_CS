@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="00%29Engine\00%29Cycle\Cycle.cs" />
     <Compile Include="00%29Engine\00%29Cycle\Cycle_abstract.cs" />
+    <Compile Include="00%29Engine\01%29Manager\InputManager.cs" />
     <Compile Include="00%29Engine\02%29Scene\Scene.cs" />
     <Compile Include="00%29Engine\03%29GameObject\GameObject.cs" />
     <Compile Include="00%29Engine\03%29GameObject\GameObjectManager.cs" />

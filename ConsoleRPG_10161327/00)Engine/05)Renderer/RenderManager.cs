@@ -124,7 +124,16 @@ public class RenderManager : Manager<RenderManager>
 			Vector2 tempPos = pos;
 			for (int i = 0; i < str.Length; ++i)
 			{
-				curRenderBuffer[pos.x, pos.y] = str[i];
+				if (str[i] == '\n')
+				{
+					pos.y = 0;
+					++pos.x;
+					continue;
+				}
+				else 
+				{
+					curRenderBuffer[pos.x, pos.y] = str[i];
+				}
 
 				++pos.y;
 

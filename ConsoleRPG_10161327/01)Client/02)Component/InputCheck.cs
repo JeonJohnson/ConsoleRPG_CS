@@ -10,22 +10,46 @@ using JohnsonMath;
 public class InputCheck : Component
 {
 
-    int inputVal;
-    bool exit = false;
-    ConsoleKeyInfo tempKeyCode;
 
-     void TempAction()
+    Renderer inputRenderer = null;
+
+    void TitleSceneSelect(int selectNum)
     {
-        tempKeyCode = Console.ReadKey();
-        Task.Factory.StartNew(TempAction);
+        switch (selectNum)
+        {
+            case 1:
+                {
+
+                    SceneManager.Instance.NextSceneChange();
+                }
+                break;
+
+            case 2:
+                {
+                    GameManager.Instance.IsQuit = true;
+                }
+                break;
+
+            case 3:
+                { }
+                break;
+        
+        
+        
+        }
+    
     }
 
 
-    Renderer inputRenderer = null;
     public override void Initailize()
     {
         inputRenderer = this.gameObject.AddRenderer<Renderer>();
-        inputRenderer.RenderStr = "Input : ";
+        //for (int i = 0; i < Defines.BufferX-1; ++i)
+        //{
+        //    inputRenderer.RenderStr += '*';
+        //}
+        //inputRenderer.RenderStr += '\n';
+        inputRenderer.RenderStr += " Input : ";
     }
     public override void Update()
     {
@@ -49,21 +73,18 @@ public class InputCheck : Component
         cursorPos.x = inputRenderer.RenderStr.Length;
         GameManager.Instance.CursorPos = cursorPos;
 
-        ConsoleKeyInfo temp = new ConsoleKeyInfo();
-
-        Task.Factory.StartNew(TempAction);
-
-
-        if (tempKeyCode.Key == ConsoleKey.D1)
-        {
-
-            int a = 0;
-        }
-
+        //if (InputManager.Instance.GetInputValue() == 2)
+        //{
+            
+        //}
 
 
         eScene curScene = SceneManager.Instance.CurScene.SceneNum;
+
+        TitleSceneSelect(InputManager.Instance.GetInputValue());
     }
+
+    
 
     public override void ReadyRender()
     {

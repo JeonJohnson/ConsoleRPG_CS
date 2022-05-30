@@ -19,6 +19,11 @@ public class GameManager : Manager<GameManager>
 		get { return isQuit; }
 		set { isQuit = value; }
 	}
+	public void GameExit()
+	{
+		isQuit = true;
+	}
+
 
 	Vector2 cursorPos;
 	public Vector2 CursorPos
@@ -57,7 +62,9 @@ public class GameManager : Manager<GameManager>
 
 		//scene Setting//
 		SceneSetting();
-		SceneManager.Instance.SetFirstScene<TitleMenu>();	
+		SceneManager.Instance.SetFirstScene<TitleMenu>();
+
+		InputManager.Instance.Initialize();
 	}
 
 	
