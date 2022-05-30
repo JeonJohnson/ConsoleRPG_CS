@@ -23,7 +23,12 @@ class TitleMenu : Scene
 
 
         Renderer titleRender2 = Renderer.Instantiate();
-        titleRender2.RenderStr = "************************";
+        //titleRender2.RenderStr = "****************************";
+        for (int i = 0; i < 70; ++i)
+        {
+            titleRender2.RenderStr += '*';
+        
+        }
         titleName2.AddRenderer(titleRender2);
 
         //GameObject titleLine = GameObject.Instantiate();

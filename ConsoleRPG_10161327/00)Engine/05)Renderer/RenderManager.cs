@@ -13,8 +13,8 @@ public class RenderManager : Manager<RenderManager>
 	List<Renderer> renderQueue;
 
 
-	char[,] preRenderBuffer = new char[Defines.BufferX, Defines.BufferY];
-	char[,] curRenderBuffer = new char[Defines.BufferX, Defines.BufferY];
+	char[,] preRenderBuffer = new char[Defines.BufferY, Defines.BufferX];
+	char[,] curRenderBuffer = new char[Defines.BufferY, Defines.BufferX];
 
 	public void WindowSetting()
 	{
@@ -108,7 +108,7 @@ public class RenderManager : Manager<RenderManager>
         {
             for (int k = 0; k < Defines.BufferY; ++k)
             {
-                preRenderBuffer[i, k] = curRenderBuffer[i, k];
+                preRenderBuffer[k,i] = curRenderBuffer[k, i];
             }
         }
 
@@ -121,13 +121,18 @@ public class RenderManager : Manager<RenderManager>
 			Vector2 pos = render.transform.position;
 			string str = render.RenderStr;
 
+			Vector2 tempPos = pos;
 			for (int i = 0; i < str.Length; ++i)
 			{
 				curRenderBuffer[pos.x, pos.y] = str[i];
 
 				++pos.y;
 
-			
+				if (pos.y >= Defines.BufferX)
+				{
+					pos.y = 0;
+					++pos.x;
+				}
 				//버퍼길이 넘어가면 다음줄 넘기기 예외추가해야함
 			}
 		}
@@ -136,10 +141,10 @@ public class RenderManager : Manager<RenderManager>
 		{
 			for (int k = 0; k < Defines.BufferY; ++k)
 			{
-				if (curRenderBuffer[i, k] != preRenderBuffer[i, k])
+				if (curRenderBuffer[k, i] != preRenderBuffer[k, i])
 				{
-					Console.SetCursorPosition(k,i);
-					Console.Write(curRenderBuffer[i, k]);
+					Console.SetCursorPosition(i,k);
+					Console.Write(curRenderBuffer[k, i]);
 				}
 			}
 		}
