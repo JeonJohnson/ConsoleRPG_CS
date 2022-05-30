@@ -53,6 +53,10 @@ sealed public class GameObject : Cycle
 		return newObj;
 	}
 
+	//public static GameObject CopyObject(GameObject prefab)
+	//{ 
+	//}
+
 	public static void Destroy(GameObject gameObject)
 	{
 		gameObject.isDead = true;
@@ -119,8 +123,7 @@ sealed public class GameObject : Cycle
 	//Renderer renderer = null;
 
 	public Renderer AddRenderer(Renderer renderer)
-	{
-
+	{ 
 		renderer.gameObject = this;
 		renderer.Initailize();
 		renderers.Add(renderer);
@@ -148,9 +151,12 @@ sealed public class GameObject : Cycle
 
 			return renderer;
 		}	
-	
-
 	}
+
+	//public T GetRenderer<T>() 
+	//{
+	//	lsitjasidja;sidfj;asildfjawfuoehyi3q
+	//}
 
 	public T AddComponent<T>(T component = null) where T : Component, new()
 	{
@@ -182,15 +188,17 @@ sealed public class GameObject : Cycle
 			if (tempComponent == null)
 			{
 				tempComponent = new T();
+				
 			}
 			tempComponent.gameObject = this;
+			tempComponent.Initailize(); 
 
 			KeyValuePair<string, Component> componentPair = new KeyValuePair<string, Component>(componentName, tempComponent);
 
 			newComponents.Add(componentPair);
 
 
-		return component;
+		return tempComponent;
 	}
 
 	public T GetComponent<T>() where T : class
@@ -240,6 +248,7 @@ sealed public class GameObject : Cycle
 
 		//transform = new Transform();
 		transform = this.AddComponent<Transform>();
+		MergeNewComponents();
 	}
 
 	public void Update()

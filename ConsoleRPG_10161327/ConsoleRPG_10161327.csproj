@@ -57,6 +57,7 @@
     <Compile Include="01%29Client\01%29Scene\Inventory.cs" />
     <Compile Include="01%29Client\01%29Scene\Shop.cs" />
     <Compile Include="01%29Client\01%29Scene\TitleMenu.cs" />
+    <Compile Include="01%29Client\02%29Component\InputCheck.cs" />
     <Compile Include="01%29Client\02%29Component\UI_Title.cs" />
     <Compile Include="01%29Client\Renderer\ArrayRenderer.cs" />
     <Compile Include="00%29Engine\05%29Renderer\Renderer.cs" />

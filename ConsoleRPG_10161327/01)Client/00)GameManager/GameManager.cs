@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using JohnsonMath;
 public class GameManager : Manager<GameManager>
 {
 	public GameManager()
@@ -13,12 +14,27 @@ public class GameManager : Manager<GameManager>
 	}
 
 	private bool isQuit = false;
-
 	public bool IsQuit
-	{	
-        get { return isQuit; }
+	{
+		get { return isQuit; }
 		set { isQuit = value; }
 	}
+
+	Vector2 cursorPos;
+	public Vector2 CursorPos
+	{
+		get 
+		{
+			return cursorPos;
+		}
+		set 
+		{
+			Console.SetCursorPosition(value.x, value.y);
+			cursorPos = value;
+		}
+	}
+	
+	
 
 
 	public void SceneSetting()

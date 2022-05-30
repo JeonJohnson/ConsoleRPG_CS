@@ -7,6 +7,8 @@ using Enums;
 
 public abstract class Scene : Cycle
 {
+
+    
     public Scene()
     {
 
@@ -19,13 +21,14 @@ public abstract class Scene : Cycle
     {
         Scene scene = new T();
         scene.sceneName = typeof(T).Name;
-        scene.sceneNum = (int)sceneNum;
+        scene.sceneNum = sceneNum;
 
         return scene;
     }
 
 
     protected string sceneName;
+    
 
     public string SceneName
     {
@@ -33,8 +36,8 @@ public abstract class Scene : Cycle
         set { sceneName = value; }
     }
 
-    protected int sceneNum;
-    public int SceneNum
+    protected eScene sceneNum;
+    public eScene SceneNum
     {
         get { return sceneNum; }
         set { sceneNum = value; }

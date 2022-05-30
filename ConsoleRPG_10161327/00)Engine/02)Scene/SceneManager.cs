@@ -12,6 +12,11 @@ public class SceneManager : Manager<SceneManager> , Cycle
 
 	Scene preScene = null;
 	Scene curScene = null;
+	public Scene CurScene
+	{
+		get
+		{ return curScene; }
+	}
 	Scene nextScene = null;
 
 	//Dictionary<string, Scene> sceneDictionary = new Dictionary<string, Scene>();

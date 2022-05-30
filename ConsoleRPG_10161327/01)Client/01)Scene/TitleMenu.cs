@@ -8,36 +8,50 @@ class TitleMenu : Scene
 {
     public override void Initailize()
     {
-        GameObject titleName = GameObject.Instantiate();
-        titleName.AddComponent<UI_Title>();
+        GameObject sceneName = GameObject.Instantiate();
+        sceneName.AddComponent<UI_Title>();
 
-        Renderer    titleRender = Renderer.Instantiate();
-        titleRender.RenderStr = "Title Menu";
-        titleName.AddRenderer(titleRender);
-
-
-
-        GameObject titleName2 = GameObject.Instantiate();
-        titleName2.AddComponent<UI_Title>();
-        titleName2.GetComponent<Transform>().position.x = 1;
+        Renderer    sceneNameRender = Renderer.Instantiate();
+        sceneNameRender.RenderStr = "Title Menu";
+        sceneName.AddRenderer(sceneNameRender);
 
 
-        Renderer titleRender2 = Renderer.Instantiate();
-        //titleRender2.RenderStr = "****************************";
-        for (int i = 0; i < 70; ++i)
-        {
-            titleRender2.RenderStr += '*';
-        
-        }
-        titleName2.AddRenderer(titleRender2);
-
-        //GameObject titleLine = GameObject.Instantiate();
-        //titleLine.transform.position = new JohnsonMath.Vector2(0, 1);
-        //titleLine.AddRenderer<LineRenderer>();
+        GameObject sceneNameBoader = GameObject.Instantiate();
+        sceneNameBoader.AddComponent<UI_Title>();
+        sceneNameBoader.GetComponent<Transform>().position.x = 1;
+        //Renderer sceneNameBoaderRenderer = Renderer.Instantiate();
+        //for (int i = 0; i < Defines.BufferX; ++i)
+        //{
+        //    sceneNameBoaderRenderer.RenderStr += '*';
+        //}
+        //sceneNameBoader.AddRenderer(sceneNameBoaderRenderer);
+        sceneNameBoader.AddRenderer<LineRenderer>();
 
 
+        GameObject title = GameObject.Instantiate();
+        title.transform.position.x = 2;
+        Renderer titleRenderer = Renderer.Instantiate();
+        titleRenderer.RenderStr = "TextRPG";
+        title.AddRenderer(titleRenderer);
+
+        GameObject sceneNameBoader2 = GameObject.Instantiate();
+        sceneNameBoader2.AddComponent<UI_Title>();
+        sceneNameBoader2.GetComponent<Transform>().position.x = 3;
+        sceneNameBoader2.AddRenderer<LineRenderer>();
+
+        GameObject startButton = GameObject.Instantiate();
+        startButton.transform.position.x = 4;
+        startButton.AddRenderer<Renderer>().RenderStr =  "1. Game Start";
+
+        GameObject exitButton = GameObject.Instantiate();
+        exitButton.transform.position.x = 5;
+        exitButton.AddRenderer<Renderer>().RenderStr = "2. Game Exit";
 
 
+        GameObject selectNum = GameObject.Instantiate();
+        selectNum.transform.position.x = 20;
+        selectNum.AddComponent<InputCheck>();
+        //selectNum.AddRenderer<Renderer>().RenderStr = "Input : ";
 
 
     }

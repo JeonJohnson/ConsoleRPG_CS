@@ -10,7 +10,7 @@ public class LineRenderer : Renderer
 	public override void Initailize()
 	{
 		base.Initailize();
-		for (int i = 0; i < 31; ++i)
+		for (int i = 0; i < Defines.BufferX; ++i)
 		{
 			RenderStr += '*';
 		}

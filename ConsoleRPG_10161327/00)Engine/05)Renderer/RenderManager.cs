@@ -143,13 +143,19 @@ public class RenderManager : Manager<RenderManager>
 			{
 				if (curRenderBuffer[k, i] != preRenderBuffer[k, i])
 				{
-					Console.SetCursorPosition(i,k);
+					//Console.SetCursorPosition(i,k);
+					GameManager.Instance.CursorPos = new Vector2(i,k);
 					Console.Write(curRenderBuffer[k, i]);
 				}
+
+				//if (curRenderBuffer[k, i] != '\0')
+				//{
+				//	GameManager.Instance.CursorPos = new Vector2(i, k);
+				//}
 			}
 		}
-		
 
+		
 
 
 		ClearRenderList();

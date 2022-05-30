@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 public abstract class Component : Cycle
 {
 
-	public GameObject gameObject = null;
+
+
+    public GameObject gameObject = null;
 
     public abstract void Initailize();
 
