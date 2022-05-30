@@ -114,9 +114,9 @@ sealed public class GameObject : Cycle
 	bool isDontDestroyed = false;
 	public bool IsDontDestroyed
 	{
-		get { return IsDontDestroyed; }
+		get { return isDontDestroyed; }
 		set { isDontDestroyed = value; }
-	}
+	} 
 
 	public Transform transform = null;
 

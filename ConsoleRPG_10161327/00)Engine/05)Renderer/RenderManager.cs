@@ -58,6 +58,23 @@ public class RenderManager : Manager<RenderManager>
 	}
 
 
+	public void ReleaseScene()
+	{
+		ClearRenderList();
+		Console.Clear();
+
+		for (int i = 0; i < Defines.BufferY; ++i)
+		{
+			for (int k = 0; k < Defines.BufferX; ++k)
+			{
+				curRenderBuffer[i, k] = '\0';
+				preRenderBuffer[i, k] = '\0';
+			}
+		}
+	
+	}
+
+
 	public void Initailize()
 	{
 		WindowSetting();

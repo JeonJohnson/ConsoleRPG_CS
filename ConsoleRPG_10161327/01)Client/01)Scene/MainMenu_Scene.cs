@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class MainMenu : Scene
+public class MainMenu_Scene : Scene
 {
 	
 
@@ -14,10 +14,8 @@ public class MainMenu : Scene
 
 	public override void Initailize()
 	{
-		
-
 		InGameWindow = GameObject.Instantiate();
-		
+		InGameWindow.AddRenderer<Renderer>().RenderStr = "MainMenu Scene";
 
 
 	}

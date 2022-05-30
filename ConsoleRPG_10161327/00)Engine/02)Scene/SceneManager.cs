@@ -128,8 +128,11 @@ public class SceneManager : Manager<SceneManager> , Cycle
 		}
 
 		curScene.Release();
-		GameObjectManager.Instance.Release_Scene();
+		GameObjectManager.Instance.ReleaseScene();
 		//Dont Destoryed 된 게임오브젝트 넘겨주기
+		RenderManager.Instance.ReleaseScene();
+			
+
 		nextScene.Initailize();
 
 		preScene = curScene;

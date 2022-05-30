@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Inventory : Scene
+class Inventory_Scene : Scene
 {
 
     public override void Initailize()
     {
-        throw new NotImplementedException();
+        GameObject sceneName = GameObject.Instantiate();
+        sceneName.AddRenderer<Renderer>().RenderStr = "Inventory Scene";
     }
 
 }

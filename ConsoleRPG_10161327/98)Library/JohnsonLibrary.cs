@@ -15,7 +15,35 @@ namespace Structs
 		public Enums.Layer layer;
 	}
 
-	
+	public struct UnitStatus
+	{
+		public string name;
+
+		public Enums.eClass job;
+
+		public int gold;
+
+		public int Lv;
+		public int Exp;
+
+		public int fullHp;
+		public int curHp;
+
+		public int dmg;
+	}
+
+	public struct ItemStatus
+	{
+		public string name;
+		public Enums.eItemKind kind;
+
+		public int price;
+		public int requiredLv;
+
+		public int hp;
+
+		public int dmg;
+	}
 
 }
 
@@ -42,12 +70,36 @@ namespace Enums
 		End
 	}
 
-	public enum eRenderQueue
-	{
-		Boundary,
-		Objects,
+	//public enum eRenderQueue
+	//{
+	//	Boundary,
+	//	Objects,
+	//	End
+	//}
+
+	public enum eUnit
+	{ 
+		Player,
+		Monster,
 		End
 	}
+
+	public enum eItemKind
+	{
+		Weapon,
+		Armor,
+		Acc,
+		End
+	}
+
+	public enum eClass
+	{ 
+		Warrior,
+		Magician,
+		Rogue,
+		End
+	}
+
 }
 
 public static class Fucns

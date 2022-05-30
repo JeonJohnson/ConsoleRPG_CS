@@ -4,12 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Shop : Scene
+public abstract class Item
 {
 
-    public override void Initailize()
-    {
-        throw new NotImplementedException();
-    }
-
 }
+

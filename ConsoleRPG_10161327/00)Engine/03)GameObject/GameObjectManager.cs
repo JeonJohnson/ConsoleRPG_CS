@@ -15,7 +15,16 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 	{ }
 
 	private List<GameObject> gameObjectList;
+	//public List<GameObject> GameObjectList
+	//{
+	//	get { return gameObjectList; }
+	//}
+
 	private List<GameObject> newGameObjectList;
+	//public List<GameObject> NewGameObjectList
+	//{
+	//	get { return newGameObjectList; }
+	//}
 
 
 	public void AddGameObject(GameObject gameObject)
@@ -106,9 +115,11 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 
 	}
 
-	public void Release_Scene()
+	public void ReleaseScene()
 	{
 		MergeNewGameObjects();
+
+		//bool temp = gameObjectList[0].IsDontDestroyed;
 
 		for (int i = gameObjectList.Count - 1; i >= 0; --i)
 		{

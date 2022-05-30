@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class TitleMenu : Scene
+class TitleMenu_Scene : Scene
 {
     public override void Initailize()
     {
@@ -12,7 +12,7 @@ class TitleMenu : Scene
         sceneName.AddComponent<UI_Title>();
 
         Renderer    sceneNameRender = Renderer.Instantiate();
-        sceneNameRender.RenderStr = "Title Menu";
+        sceneNameRender.RenderStr = "Title Scene";
         sceneName.AddRenderer(sceneNameRender);
 
         GameObject sceneNameBoader = GameObject.Instantiate();
@@ -46,6 +46,11 @@ class TitleMenu : Scene
         exitButton.transform.position.x = 5;
         exitButton.AddRenderer<Renderer>().RenderStr = "2. Game Exit";
 
+
+
+        GameObject inputLine = GameObject.Instantiate();
+        inputLine.transform.position.x = 19;
+        inputLine.AddRenderer<LineRenderer>();
 
 		GameObject selectNum = GameObject.Instantiate();
 		selectNum.transform.position.x = 20;
