@@ -9,26 +9,50 @@ public class Unit : Component
 {
 
 	protected UnitStatus unitStatus;
-		
+
+	public UnitStatus SetStatus
+	{
+		set { unitStatus = value; }
+	}
+	public int CurHp
+	{
+		get { return unitStatus.curHp; }
+	}
+
+	public int FullHp
+	{
+		get { return unitStatus.fullHp; }
+	}
 
 	public virtual void Hit(int dmg)
-	{ 
-	
+	{
+		unitStatus.curHp -= dmg;
 	}
 
 	public virtual int Attack()
 	{
-		return 0;
+		return unitStatus.dmg;
 	}
+
+	public virtual int LevelUp()
+	{
+		++unitStatus.Lv;
+
+		return unitStatus.Lv;
+	}
+
+	public virtual void Heal(int healAmount)
+	{ 
 	
+	}
 
 	public override void Initailize()
 	{
-		throw new NotImplementedException();
+		
 	}
 	public override void Update()
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	public override void ReadyRender()
@@ -38,7 +62,7 @@ public class Unit : Component
 
 	public override void Release()
 	{
-		throw new NotImplementedException();
+		
 	}
 
 }

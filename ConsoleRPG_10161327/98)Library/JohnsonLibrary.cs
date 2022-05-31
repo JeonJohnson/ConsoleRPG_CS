@@ -19,6 +19,7 @@ namespace Structs
 	{
 		public string name;
 
+		public Enums.eUnit kind;
 		public Enums.eClass job;
 
 		public int gold;
@@ -123,4 +124,7 @@ public static class Defines
 
 	public const int WinCX = 65;
 	public const int WinCY = 33;
+
+	public const int InputLine = 19;
+	public const int InputCheckerLine = 20;
 }

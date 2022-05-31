@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 using Enums;
 using JohnsonMath;
 
-public class InputCheck : Component
+public class InputChecker : Component
 {
-
-
     Renderer inputRenderer = null;
 
     void TitleSceneSelect(int selectNum)
@@ -33,11 +31,38 @@ public class InputCheck : Component
             case 3:
                 { }
                 break;
-        
-        
-        
         }
     
+    }
+
+    void CharacterSelectScene(int selectNum)
+    {
+        switch (selectNum)
+        {
+            case 1:
+                {
+                    
+                }
+                break;
+
+            case 2:
+                {
+                    
+                }
+                break;
+
+            case 3:
+                { 
+                
+                }
+                break;
+
+            case 9:
+                {
+                    GameManager.Instance.IsQuit = true;
+                }
+                break;
+        }
     }
 
 
@@ -60,7 +85,7 @@ public class InputCheck : Component
         ////따로 처리를 해줘야할듯.
         //inputVal = int.Parse(inputStr);
         //ConsoleKeyInfo temp = Console.ReadKey();
-        
+
 
         //인풋매니저를 만들어서
         //=> 여러 키 만들 필요는 없고
@@ -75,16 +100,29 @@ public class InputCheck : Component
 
         //if (InputManager.Instance.GetInputValue() == 2)
         //{
-            
+
         //}
 
 
         eScene curScene = SceneManager.Instance.CurScene.SceneNum;
 
-        TitleSceneSelect(InputManager.Instance.GetInputValue());
-    }
+        switch (curScene)
+        {
+            case eScene.TitleMenu:
+                {
+                    TitleSceneSelect(InputManager.Instance.GetInputValue());
+                }
+                break;
 
-    
+            case eScene.CharacterSelect:
+                {
+                    CharacterSelectScene(InputManager.Instance.GetInputValue());
+                }
+                break;
+        }
+
+
+    }
 
     public override void ReadyRender()
     {

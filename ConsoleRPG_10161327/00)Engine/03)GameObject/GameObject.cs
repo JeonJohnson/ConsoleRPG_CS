@@ -12,6 +12,8 @@ sealed public class GameObject : Cycle
 		tag = (int)desc.tag;
 		layer = (int)desc.layer;
 
+
+		Initailize();
 		//Awake();
 	}
 
@@ -25,12 +27,10 @@ sealed public class GameObject : Cycle
 
 	public static GameObject Instantiate(Structs.GameObjectDesc desc, params Component[] components)
 	{
-		GameObject newObj = new GameObject(desc);
+		//폐기
+		GameObject newObj = /*new GameObject(desc)*/ null;
 
-		//만들어야함.
-
-
-		GameObjectManager.Instance.AddGameObject(newObj);
+		//GameObjectManager.Instance.AddGameObject(newObj);
 
 		return newObj;
 	}
@@ -40,6 +40,37 @@ sealed public class GameObject : Cycle
 		GameObject newObj = new GameObject(desc);
 
 		GameObjectManager.Instance.AddGameObject(newObj);
+
+		return newObj;
+	}
+
+	public static GameObject Instantiate(string name)
+	{
+		GameObject newObj = new GameObject();
+
+		GameObjectManager.Instance.AddGameObject(newObj);
+		newObj.Name = name;
+
+		return newObj;
+	}
+
+	public static GameObject Instantiate(int tag)
+	{
+		GameObject newObj = new GameObject();
+
+		GameObjectManager.Instance.AddGameObject(newObj);
+		newObj.tag = tag;
+
+		return newObj;
+	}
+
+	public static GameObject Instantiate(string name, int tag)
+	{
+		GameObject newObj = new GameObject();
+
+		GameObjectManager.Instance.AddGameObject(newObj);
+		newObj.Name = name;
+		newObj.Tag = tag;
 
 		return newObj;
 	}
@@ -62,10 +93,21 @@ sealed public class GameObject : Cycle
 		gameObject.isDead = true;
 	}
 
+	public void Destory()
+	{
+		this.isDead = true;
+	}
+
+
 	public static void DontDestroy(GameObject gameObject)
 	{
 		gameObject.IsDontDestroyed = true;
 	}
+	public void DontDestroy()
+	{
+		this.IsDontDestroyed = true;
+	}
+
 
 	string name;
 	public string Name 
@@ -74,14 +116,14 @@ sealed public class GameObject : Cycle
 		set { name = value; }
 	}
 
-	int tag;
+	int tag = (int)Enums.Tags.End;
 	public int Tag
 	{
 		get { return tag; }
 		set { tag = value; }
 	}
-	
-	int layer;
+
+	int layer = (int)Enums.Layer.End;
     public int Layer
     {
         get { return layer; }
@@ -94,7 +136,7 @@ sealed public class GameObject : Cycle
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
 
-	List<Renderer> renderers = new List<Renderer>();
+	List<KeyValuePair<string, Renderer>> renderers = new List<KeyValuePair<string, Renderer>>();
 
 
 	bool isActive = true;
@@ -126,7 +168,10 @@ sealed public class GameObject : Cycle
 	{ 
 		renderer.gameObject = this;
 		renderer.Initailize();
-		renderers.Add(renderer);
+		string rendererName = typeof(Renderer).Name;
+
+		KeyValuePair<string, Renderer> rendererPair = new KeyValuePair<string, Renderer>(rendererName, renderer);
+		renderers.Add(rendererPair);
 
 		return renderer;
 	}
@@ -139,7 +184,10 @@ sealed public class GameObject : Cycle
 
 			tempRenderer.gameObject = this;
 			tempRenderer.Initailize();
-			renderers.Add(tempRenderer);
+
+			string rendererName = typeof(T).Name;
+			KeyValuePair<string, Renderer> rendererPair = new KeyValuePair<string, Renderer>(rendererName, tempRenderer);
+			renderers.Add(rendererPair);
 
 			return tempRenderer;
 		}
@@ -147,16 +195,32 @@ sealed public class GameObject : Cycle
 		{
 			renderer.gameObject = this;
 			renderer.Initailize();
-			renderers.Add(renderer);
+
+
+			string rendererName = typeof(T).Name;
+			KeyValuePair<string, Renderer> rendererPair = new KeyValuePair<string, Renderer>(rendererName, renderer);
+			renderers.Add(rendererPair);
 
 			return renderer;
 		}	
 	}
 
-	//public T GetRenderer<T>() 
-	//{
-	//	lsitjasidja;sidfj;asildfjawfuoehyi3q
-	//}
+	public T GetRenderer<T>() where T : class
+	{
+		string rendererName = typeof(T).Name;
+
+		//foreach (KeyValuePair<string, Renderer> component in components)
+		//{
+		//	if (componentName == component.Key)
+		//	{
+		//		return component.Value as T;
+		//	}
+		//}
+
+		KeyValuePair<string, Renderer>  renderPair = renderers.Find(renderer => renderer.Key == rendererName);
+		
+		return renderPair.Value as T;
+	}
 
 	public T AddComponent<T>(T component = null) where T : Component, new()
 	{
@@ -264,11 +328,10 @@ sealed public class GameObject : Cycle
 
 	public void ReadyRender()
 	{
-		foreach (Renderer renderer in renderers)
+		foreach (KeyValuePair<string, Renderer> renderer  in renderers)
 		{
-			renderer.ReadyRender();
+			renderer.Value.ReadyRender();
 		}
-
 	}
 
 	public void Release()

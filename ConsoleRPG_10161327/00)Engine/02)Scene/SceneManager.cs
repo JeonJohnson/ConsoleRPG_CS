@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 public class SceneManager : Manager<SceneManager> , Cycle
 {
 
+	
 
 	bool isSceneChange = false;
 

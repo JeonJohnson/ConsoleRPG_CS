@@ -6,41 +6,47 @@ using System.Threading.Tasks;
 
 public class GameObjectManager : Manager<GameObjectManager>, Cycle
 {
-	//public GameObjectManager()
-	//{
-	//	Awake();
-	//}
 
 	~GameObjectManager()
 	{ }
 
 	private List<GameObject> gameObjectList;
-	//public List<GameObject> GameObjectList
-	//{
-	//	get { return gameObjectList; }
-	//}
-
-	private List<GameObject> newGameObjectList;
-	//public List<GameObject> NewGameObjectList
-	//{
-	//	get { return newGameObjectList; }
-	//}
-
+	private List<GameObject> newGameObjectList;//안씀
 
 	public void AddGameObject(GameObject gameObject)
 	{
 		gameObjectList.Add(gameObject);
 	}
 
-	//public GameObject FindGameObjectByTag(string tag)
-	//{ 
+	public GameObject FindGameObjectByName(string name)
+	{
+		GameObject tempObj = null;
 
-	//}
 
-	//public GameObject FindGameObjectByName(string name)
-	//{ 
+		//for문 돌리면서 찾기
+		//foreach (GameObject obj in newGameObjectList)
+		//{
+		//	if (obj.Name == name)
+		//	{
+		//		tempObj = obj;
+		//		break;
+		//	}
+		//}
+		
+		//람다식으로 찾기 
+		tempObj = gameObjectList.Find(obj => obj.Name == name);
 
-	//}
+		return tempObj;
+	}
+
+	public GameObject FindGameObjectByTag(int tag)
+	{
+		GameObject tempObj = null;
+		
+		tempObj = gameObjectList.Find(obj => obj.Tag == tag);
+
+		return tempObj;
+	}
 
 	private void MergeNewGameObjects()
 	{
@@ -111,7 +117,6 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 		//	}
 		//}
 		////리스트 자체가 한번 복사되는거니까 비용적인 측면에서 싸진 않을듯.
-
 
 	}
 

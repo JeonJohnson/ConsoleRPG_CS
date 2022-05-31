@@ -17,7 +17,12 @@
 	내일 할거	 	Unit 클래스 만들기
 			Character select Scene 에서 직업정하기
 		
-	
+00:12 2022-06-01		TitleScene, CharacterScene 만듦.
+			Status 완성.
+	내일 할거		-씬 바뀌는 델리게이트 만들기
+			-player 만들기
+			-던전 만들기
+			-모든 씬 흐름은 완성하기
 
 
 

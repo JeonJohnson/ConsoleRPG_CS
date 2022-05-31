@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 public class MainMenu_Scene : Scene
 {
-	
-
 	GameObject	InGameWindow;
 	GameObject	Title;
 	GameObject	InputWindow;

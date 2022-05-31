@@ -8,23 +8,17 @@ class TitleMenu_Scene : Scene
 {
     public override void Initailize()
     {
-        GameObject sceneName = GameObject.Instantiate();
-        sceneName.AddComponent<UI_Title>();
-
+        GameObject sceneName = GameObject.Instantiate("SceneName");
         Renderer    sceneNameRender = Renderer.Instantiate();
         sceneNameRender.RenderStr = "Title Scene";
         sceneName.AddRenderer(sceneNameRender);
+        GameObject.DontDestroy(sceneName);
 
-        GameObject sceneNameBoader = GameObject.Instantiate();
-        sceneNameBoader.AddComponent<UI_Title>();
-        sceneNameBoader.GetComponent<Transform>().position.x = 1;
-        //Renderer sceneNameBoaderRenderer = Renderer.Instantiate();
-        //for (int i = 0; i < Defines.BufferX; ++i)
-        //{
-        //    sceneNameBoaderRenderer.RenderStr += '*';
-        //}
-        //sceneNameBoader.AddRenderer(sceneNameBoaderRenderer);
-        sceneNameBoader.AddRenderer<LineRenderer>();
+        GameObject sceneNameBorder = GameObject.Instantiate("SceneNameBorder");
+        sceneNameBorder.GetComponent<Transform>().position.x = 1;
+        sceneNameBorder.AddRenderer<LineRenderer>();
+        GameObject.DontDestroy(sceneNameBorder);
+
 
 
         GameObject title = GameObject.Instantiate();
@@ -48,15 +42,18 @@ class TitleMenu_Scene : Scene
 
 
 
-        GameObject inputLine = GameObject.Instantiate();
-        inputLine.transform.position.x = 19;
+        GameObject inputLine = GameObject.Instantiate("InputLine");
+        inputLine.transform.position.x = Defines.InputLine;
         inputLine.AddRenderer<LineRenderer>();
-
-		GameObject selectNum = GameObject.Instantiate();
-		selectNum.transform.position.x = 20;
-		selectNum.AddComponent<InputCheck>();
-		//selectNum.AddRenderer<Renderer>().RenderStr = "Input : ";
+        GameObject.DontDestroy(inputLine);
 
 
-	}
+		GameObject selectNum = GameObject.Instantiate("InputChecker");
+		selectNum.transform.position.x = Defines.InputCheckerLine;
+		selectNum.AddComponent<InputChecker>();
+        GameObject.DontDestroy(selectNum);
+        //selectNum.AddRenderer<Renderer>().RenderStr = "Input : ";
+        
+
+    }
 }

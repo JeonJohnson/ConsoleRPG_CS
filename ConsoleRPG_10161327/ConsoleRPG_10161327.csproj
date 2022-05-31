@@ -58,11 +58,20 @@
     <Compile Include="01%29Client\01%29Scene\Inventory_Scene.cs" />
     <Compile Include="01%29Client\01%29Scene\Shop_Scene.cs" />
     <Compile Include="01%29Client\01%29Scene\TitleMenu_Scene.cs" />
-    <Compile Include="01%29Client\02%29Component\InputCheck.cs" />
+    <Compile Include="01%29Client\02%29Component\InputChecker.cs" />
     <Compile Include="01%29Client\02%29Component\Item.cs" />
     <Compile Include="01%29Client\02%29Component\PlayerStatus.cs" />
     <Compile Include="01%29Client\02%29Component\UI_Title.cs" />
-    <Compile Include="01%29Client\02%29Component\Unit.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Status\MagicianStatus.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Status\RogueStatus.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Status\StatusSetting.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Status\WarriorStatus.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Monster\Golem.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Monster\Orc.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Monster\Slime.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Status\MonsterStatus.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Player\Player.cs" />
+    <Compile Include="01%29Client\02%29Component\Unit\Unit.cs" />
     <Compile Include="01%29Client\Renderer\ArrayRenderer.cs" />
     <Compile Include="00%29Engine\05%29Renderer\Renderer.cs" />
     <Compile Include="00%29Engine\05%29Renderer\RenderManager.cs" />
@@ -78,6 +87,8 @@
   <ItemGroup>
     <None Include="99%29Etc\App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="01%29Client\02%29Component\Unit\Class\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
