@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 public class SceneManager : Manager<SceneManager> , Cycle
 {
 
-	
+	public  delegate void SceneLoadEvent(Enums.eScene sceneEnum);
+	public SceneLoadEvent sceneLoadEvent = null;
+
 
 	bool isSceneChange = false;
 
@@ -140,11 +142,14 @@ public class SceneManager : Manager<SceneManager> , Cycle
 		curScene = nextScene;
 		nextScene = null;
 
+		sceneLoadEvent(curScene.SceneNum);
+
 		isSceneChange = false;
 	}
 
 	public void Initailize()
 	{
+		
 	}
 
 

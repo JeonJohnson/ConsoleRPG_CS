@@ -48,7 +48,7 @@ public class Unit : Component
 
 	public override void Initailize()
 	{
-		
+		base.Initailize();
 	}
 	public override void Update()
 	{
@@ -62,7 +62,7 @@ public class Unit : Component
 
 	public override void Release()
 	{
-		
+		base.Initailize();
 	}
 
 }

@@ -10,7 +10,6 @@ using JohnsonMath;
 public class InputChecker : Component
 {
     Renderer inputRenderer = null;
-
     void TitleSceneSelect(int selectNum)
     {
         switch (selectNum)
@@ -68,6 +67,10 @@ public class InputChecker : Component
 
     public override void Initailize()
     {
+
+        base.Initailize();
+
+
         inputRenderer = this.gameObject.AddRenderer<Renderer>();
         //for (int i = 0; i < Defines.BufferX-1; ++i)
         //{
@@ -131,8 +134,15 @@ public class InputChecker : Component
 
     public override void Release()
     {
+        base.Release();
     }
 
+	public override void SceneLoad(eScene sceneNum)
+	{
+		base.SceneLoad(sceneNum);
 
-    
+
+        int a = 0;
+	}
+
 }

@@ -9,7 +9,17 @@ public abstract class Component : Cycle
 
     public GameObject gameObject = null;
 
-    public abstract void Initailize();
+    public virtual void Initailize()
+    {
+        if (SceneManager.Instance.sceneLoadEvent == null)
+        {
+            SceneManager.Instance.sceneLoadEvent = new SceneManager.SceneLoadEvent(SceneLoad);
+        }
+        else 
+        {
+            SceneManager.Instance.sceneLoadEvent += SceneLoad;
+        }
+    }
 
 	public abstract void Update();
 
@@ -23,6 +33,20 @@ public abstract class Component : Cycle
     //    //어차피 콘솔알피지는 딱히 그럴 필요 업을듯.
     //    //맵 렌더러 하나 만들어야하나?
     //}
-    public abstract void Release();
+    public virtual void Release()
+    {
+        SceneManager.Instance.sceneLoadEvent -= SceneLoad;
+    }
+
+
+    public virtual void SceneLoad(Enums.eScene sceneNum)
+    { 
+    
+
+
+    }
+
+
+
 
 }
