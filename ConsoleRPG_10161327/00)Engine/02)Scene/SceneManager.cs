@@ -14,6 +14,11 @@ public class SceneManager : Manager<SceneManager> , Cycle
 	bool isSceneChange = false;
 
 	Scene preScene = null;
+	public Scene PreScene
+	{
+		get { return preScene; }
+	}
+
 	Scene curScene = null;
 	public Scene CurScene
 	{

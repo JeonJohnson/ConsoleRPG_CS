@@ -25,7 +25,8 @@ namespace Structs
 		public int gold;
 
 		public int Lv;
-		public int Exp;
+		public int curExp;
+		public int fullExp;
 
 		public int fullHp;
 		public int curHp;
@@ -68,7 +69,9 @@ namespace Enums
 		Inventory,
 		Shop,
 		Dungeon,
-		End
+		End,
+
+		Exit = 9
 	}
 
 	//public enum eRenderQueue
@@ -125,6 +128,6 @@ public static class Defines
 	public const int WinCX = 65;
 	public const int WinCY = 33;
 
-	public const int InputLine = 19;
-	public const int InputCheckerLine = 20;
+	public const int InputLine = 30;
+	public const int InputCheckerLine = 31;
 }

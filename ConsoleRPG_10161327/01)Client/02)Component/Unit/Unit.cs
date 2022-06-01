@@ -14,6 +14,27 @@ public class Unit : Component
 	{
 		set { unitStatus = value; }
 	}
+
+	public string Name
+	{
+		get { return unitStatus.name; }
+	}
+
+	public int LV
+	{
+		get { return unitStatus.Lv; }
+	}
+
+	public int FullEXP
+	{
+		get { return unitStatus.fullExp; }
+	}
+
+	public int CurEXP
+	{
+		get { return unitStatus.curExp; }
+	}
+
 	public int CurHp
 	{
 		get { return unitStatus.curHp; }
@@ -23,6 +44,12 @@ public class Unit : Component
 	{
 		get { return unitStatus.fullHp; }
 	}
+
+	public int DMG
+	{
+		get { return unitStatus.dmg; }
+	}
+
 
 	public virtual void Hit(int dmg)
 	{

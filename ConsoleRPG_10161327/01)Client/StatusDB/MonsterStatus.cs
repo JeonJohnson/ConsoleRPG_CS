@@ -25,7 +25,7 @@ namespace MonsterStaus
 			status.gold = 100;
 
 			status.Lv = 1;
-			status.Exp = 5;
+			status.fullExp = 5;
 
 			status.fullHp = 30;
 			status.curHp = status.fullHp;
@@ -54,7 +54,7 @@ namespace MonsterStaus
 			status.gold = 500;
 
 			status.Lv = 5;
-			status.Exp = 10;
+			status.fullExp = 10;
 
 			status.fullHp = 100;
 			status.curHp = status.fullHp;
@@ -83,7 +83,7 @@ namespace MonsterStaus
 			status.gold = 1000;
 
 			status.Lv = 10;
-			status.Exp = 100;
+			status.fullExp = 100;
 
 			status.fullHp = 250;
 			status.curHp = status.fullHp;

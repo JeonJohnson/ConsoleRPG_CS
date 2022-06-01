@@ -11,7 +11,6 @@ public class Player : Unit
 		return base.Attack();
 	}
 
-
 	public override void Heal(int healAmount)
 	{
 		base.Heal(healAmount);

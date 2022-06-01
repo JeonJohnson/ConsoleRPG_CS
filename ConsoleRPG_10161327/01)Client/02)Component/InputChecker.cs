@@ -10,6 +10,9 @@ using JohnsonMath;
 public class InputChecker : Component
 {
     Renderer inputRenderer = null;
+
+    //eScene curScene = eScene.End;
+
     void TitleSceneSelect(int selectNum)
     {
         switch (selectNum)
@@ -36,23 +39,37 @@ public class InputChecker : Component
 
     void CharacterSelectScene(int selectNum)
     {
+        StatusSetting tempStatus = null;
+
         switch (selectNum)
         {
             case 1:
                 {
-                    
+                    tempStatus = new WarriorStatus();
+                    Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+                    playerScript.SetStatus = tempStatus.status;
+
+                    SceneManager.Instance.NextSceneChange();
                 }
                 break;
 
             case 2:
                 {
-                    
+                    tempStatus = new MagicianStatus();
+                    Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+                    playerScript.SetStatus = tempStatus.status;
+
+                    SceneManager.Instance.NextSceneChange();
                 }
                 break;
 
             case 3:
-                { 
-                
+                {
+                    tempStatus = new RogueStatus();
+                    Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+                    playerScript.SetStatus = tempStatus.status;
+
+                    SceneManager.Instance.NextSceneChange();
                 }
                 break;
 
@@ -63,6 +80,79 @@ public class InputChecker : Component
                 break;
         }
     }
+
+    void MainMenuScene(int selectNum)
+    {
+
+        switch (selectNum)
+        {
+
+            case 1:
+                {
+                    SceneManager.Instance.SceneChange(eScene.Dungeon);
+                }
+               break;
+
+            case 2:
+                {
+                    SceneManager.Instance.SceneChange(eScene.Shop);
+                }
+                break;
+
+            case 3:
+                {
+                    SceneManager.Instance.SceneChange(eScene.Inventory);
+                }
+                break;
+
+
+            case 9:
+                {
+                    GameManager.Instance.IsQuit = true;
+                }
+                break;
+
+        }
+    }
+
+    void DungeonScene(int selectNum)
+    {
+        switch (selectNum)
+        {
+
+            case 1:
+                {
+
+                }
+                break;
+
+            case 2:
+                {
+
+                }
+                break;
+
+            case 3:
+                {
+
+                }
+                break;
+
+            case 4:
+                {
+                    SceneManager.Instance.SceneChange(eScene.MainMenu);
+                }
+                break;
+
+            case 9:
+                {
+                    GameManager.Instance.IsQuit = true;
+                }
+                break;
+
+        }
+    }
+
 
 
     public override void Initailize()
@@ -101,15 +191,8 @@ public class InputChecker : Component
         cursorPos.x = inputRenderer.RenderStr.Length;
         GameManager.Instance.CursorPos = cursorPos;
 
-        //if (InputManager.Instance.GetInputValue() == 2)
-        //{
 
-        //}
-
-
-        eScene curScene = SceneManager.Instance.CurScene.SceneNum;
-
-        switch (curScene)
+        switch (SceneManager.Instance.CurScene.SceneNum)
         {
             case eScene.TitleMenu:
                 {
@@ -120,6 +203,18 @@ public class InputChecker : Component
             case eScene.CharacterSelect:
                 {
                     CharacterSelectScene(InputManager.Instance.GetInputValue());
+                }
+                break;
+
+            case eScene.MainMenu:
+                {
+                    MainMenuScene(InputManager.Instance.GetInputValue());
+                }
+                break;
+
+            case eScene.Dungeon:
+                { 
+                
                 }
                 break;
         }
@@ -140,9 +235,13 @@ public class InputChecker : Component
 	public override void SceneLoad(eScene sceneNum)
 	{
 		base.SceneLoad(sceneNum);
+        
+        
+
+        
 
 
-        int a = 0;
+        //int a = 0;
 	}
 
 }

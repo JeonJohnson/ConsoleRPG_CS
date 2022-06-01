@@ -28,7 +28,7 @@ class TitleMenu_Scene : Scene
         title.AddRenderer(titleRenderer);
 
         GameObject sceneNameBoader2 = GameObject.Instantiate();
-        sceneNameBoader2.AddComponent<UI_Title>();
+        //sceneNameBoader2.AddComponent<UI_Title>();
         sceneNameBoader2.GetComponent<Transform>().position.x = 3;
         sceneNameBoader2.AddRenderer<LineRenderer>();
 
