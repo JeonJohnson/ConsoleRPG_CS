@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 public abstract class Component : Cycle
 {
+    ~Component()
+    {
+        Release();
+    }
 
     public GameObject gameObject = null;
 

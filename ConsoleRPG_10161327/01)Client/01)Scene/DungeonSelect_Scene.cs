@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Dungeon_Scene : Scene
+class DungeonSelect_Scene : Scene
 {
 	GameObject sceneNameObj = null;
 	GameObject notice = null;
@@ -13,7 +13,7 @@ class Dungeon_Scene : Scene
     {
 		{
 			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
-			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Dungeon Scene";
+			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Dungeon Select Scene";
 		}
 
 		{
@@ -33,12 +33,20 @@ class Dungeon_Scene : Scene
 			GameObject dungeonButton = GameObject.Instantiate();
 			dungeonButton.transform.position.x = 6;
 			dungeonButton.AddRenderer<Renderer>().RenderStr = "1. Slime\n2. Orc\n3. Golem\n4. Return MainMenu";
-
 		}
 
 		{
-			GameObject monster = GameObject.Instantiate();
+			GameObject monster = GameObjectManager.Instance.FindGameObjectByName("Monster");
 
+			if (monster == null)
+			{
+				monster = GameObject.Instantiate("Monster");
+				monster.AddComponent<Monster>();
+				monster.DontDestroy();
+			}
+
+
+			
 		
 		}
 

@@ -14,6 +14,10 @@ public class Unit : Component
 	{
 		set { unitStatus = value; }
 	}
+	public Enums.eUnit UnitKind
+	{
+		get { return unitStatus.kind; }
+	}
 
 	public string Name
 	{
@@ -50,10 +54,19 @@ public class Unit : Component
 		get { return unitStatus.dmg; }
 	}
 
+	public int Gold
+	{
+		get { return unitStatus.gold; }
+	}
 
 	public virtual void Hit(int dmg)
 	{
 		unitStatus.curHp -= dmg;
+
+		if (unitStatus.curHp < 0)
+		{
+			unitStatus.curHp = 0;
+		}
 	}
 
 	public virtual int Attack()
@@ -71,6 +84,11 @@ public class Unit : Component
 	public virtual void Heal(int healAmount)
 	{ 
 	
+	}
+
+	public virtual bool Death()
+	{
+		return unitStatus.isDeath;
 	}
 
 	public override void Initailize()

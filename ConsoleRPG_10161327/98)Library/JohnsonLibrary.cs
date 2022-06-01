@@ -28,6 +28,7 @@ namespace Structs
 		public int curExp;
 		public int fullExp;
 
+		public bool isDeath;
 		public int fullHp;
 		public int curHp;
 
@@ -68,7 +69,8 @@ namespace Enums
 		MainMenu,
 		Inventory,
 		Shop,
-		Dungeon,
+		DungeonSelect,
+		DungeonBattle,
 		End,
 
 		Exit = 9

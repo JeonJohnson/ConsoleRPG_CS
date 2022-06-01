@@ -49,9 +49,10 @@ public class GameManager : Manager<GameManager>
 		Scene mainMenu = Scene.Instantiate<MainMenu_Scene>(Enums.eScene.MainMenu);
 		Scene shop = Scene.Instantiate<Shop_Scene>(Enums.eScene.Shop);
 		Scene inventory = Scene.Instantiate<Inventory_Scene>(Enums.eScene.Inventory);
-		Scene dungeon = Scene.Instantiate<Dungeon_Scene>(Enums.eScene.Dungeon);
+		Scene dungeonSelect = Scene.Instantiate<DungeonSelect_Scene>(Enums.eScene.DungeonSelect);
+		Scene dungeonBattle = Scene.Instantiate<DungeonBattle_Scene>(Enums.eScene.DungeonBattle);
 
-		SceneManager.Instance.InsertScene(titleMenu, charSelect, mainMenu, shop, inventory, dungeon);
+		SceneManager.Instance.InsertScene(titleMenu, charSelect, mainMenu, shop, inventory, dungeonSelect, dungeonBattle);
 	}
 
 	public void Initialize()

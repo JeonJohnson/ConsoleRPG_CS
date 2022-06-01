@@ -27,10 +27,10 @@ public class MainMenu_Scene : Scene
 		}
 
 		{
-			GameObject statusViewer = GameObject.Instantiate("StatusViewer");
+			GameObject statusViewer = GameObject.Instantiate("PlayerStatusViewer");
 			statusViewer.transform.position.x = 4;
 			Player tempScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
-			statusViewer.AddComponent<StatusViewer>().SetPlayerSript = tempScript;
+			statusViewer.AddComponent<StatusViewer>().SetUnit = tempScript;
 			statusViewer.DontDestroy();
 
 			GameObject temp = GameObject.Instantiate();
@@ -43,6 +43,9 @@ public class MainMenu_Scene : Scene
 			GameObject menuButton = GameObject.Instantiate();
 			menuButton.transform.position.x = 6;
 			menuButton.AddRenderer<Renderer>().RenderStr = "1. Dungeon\n2. Shop\n3. Inventory";
+
+
+
 		}
 
 	}

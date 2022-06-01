@@ -12,6 +12,9 @@ public class InputChecker : Component
     Renderer inputRenderer = null;
 
     //eScene curScene = eScene.End;
+    
+
+
 
     void TitleSceneSelect(int selectNum)
     {
@@ -89,7 +92,7 @@ public class InputChecker : Component
 
             case 1:
                 {
-                    SceneManager.Instance.SceneChange(eScene.Dungeon);
+                    SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                 }
                break;
 
@@ -115,13 +118,75 @@ public class InputChecker : Component
         }
     }
 
-    void DungeonScene(int selectNum)
+    void DungeonSelectScene(int selectNum)
+    {
+        StatusSetting monsterStatus = null;
+
+        switch (selectNum)
+        {
+
+            case 1:
+                {
+                    monsterStatus = new MonsterStaus.Slime();
+                    Monster monsterScript = GameObjectManager.Instance.FindGameObjectByName("Monster").GetComponent<Monster>();
+                    monsterScript.SetStatus = monsterStatus.status;
+
+                    SceneManager.Instance.SceneChange(eScene.DungeonBattle);
+                }
+                break;
+
+            case 2:
+                {
+                    monsterStatus = new MonsterStaus.Orc();
+                    Monster monsterScript = GameObjectManager.Instance.FindGameObjectByName("Monster").GetComponent<Monster>();
+                    monsterScript.SetStatus = monsterStatus.status;
+
+                    SceneManager.Instance.SceneChange(eScene.DungeonBattle);
+                }
+                break;
+
+            case 3:
+                {
+                    monsterStatus = new MonsterStaus.Golem();
+                    Monster monsterScript = GameObjectManager.Instance.FindGameObjectByName("Monster").GetComponent<Monster>();
+                    monsterScript.SetStatus = monsterStatus.status;
+
+                    SceneManager.Instance.SceneChange(eScene.DungeonBattle);
+                }
+                break;
+
+            case 4:
+                {
+                    SceneManager.Instance.SceneChange(eScene.MainMenu);
+                }
+                break;
+
+            case 9:
+                {
+                    GameManager.Instance.IsQuit = true;
+                }
+                break;
+
+        }
+    }
+
+    void DungeonBattleScene(int selectNum)
     {
         switch (selectNum)
         {
 
             case 1:
                 {
+                    Player player = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+                    Monster monster = GameObjectManager.Instance.FindGameObjectByName("Monster").GetComponent<Monster>();
+
+                    monster.Hit(player.Attack());
+
+                    if (!monster.Death())
+                    {
+                        player.Hit(monster.Attack());
+                    }
+                    
 
                 }
                 break;
@@ -134,13 +199,7 @@ public class InputChecker : Component
 
             case 3:
                 {
-
-                }
-                break;
-
-            case 4:
-                {
-                    SceneManager.Instance.SceneChange(eScene.MainMenu);
+                    SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                 }
                 break;
 
@@ -212,11 +271,26 @@ public class InputChecker : Component
                 }
                 break;
 
-            case eScene.Dungeon:
-                { 
-                
+            case eScene.DungeonSelect:
+                {
+                    DungeonSelectScene(InputManager.Instance.GetInputValue());
                 }
                 break;
+
+            case eScene.DungeonBattle:
+                {
+                    DungeonBattleScene(InputManager.Instance.GetInputValue());
+                }
+                break;
+
+            case eScene.Shop:
+                { }
+                break;
+
+            case eScene.Inventory:
+                { }
+                break;
+               
         }
 
 
