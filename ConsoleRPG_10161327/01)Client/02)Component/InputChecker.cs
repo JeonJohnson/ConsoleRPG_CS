@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PlayerStatus;
 using Enums;
 using JohnsonMath;
 
@@ -12,8 +13,9 @@ public class InputChecker : Component
     Renderer inputRenderer = null;
 
     //eScene curScene = eScene.End;
-    
 
+    Player player = null;
+    Monster monster = null;
 
 
     void TitleSceneSelect(int selectNum)
@@ -174,17 +176,22 @@ public class InputChecker : Component
     {
         switch (selectNum)
         {
-
             case 1:
                 {
-                    Player player = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
-                    Monster monster = GameObjectManager.Instance.FindGameObjectByName("Monster").GetComponent<Monster>();
+                    Enums.eResult temp = Battle();
 
-                    monster.Hit(player.Attack());
-
-                    if (!monster.Death())
+                    if (temp == eResult.Win)
                     {
-                        player.Hit(monster.Attack());
+                        player.GainExp(monster.FullEXP,monster.Gold);
+                        SceneManager.Instance.SceneChange(eScene.DungeonSelect);
+                    }
+                    else if (temp == eResult.Defeated)
+                    {
+                        SceneManager.Instance.SceneChange(eScene.MainMenu);
+                    }
+                    else
+                    { 
+                    
                     }
                     
 
@@ -193,13 +200,13 @@ public class InputChecker : Component
 
             case 2:
                 {
-
+                    SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                 }
                 break;
 
             case 3:
                 {
-                    SceneManager.Instance.SceneChange(eScene.DungeonSelect);
+                    SceneManager.Instance.SceneChange(eScene.MainMenu);
                 }
                 break;
 
@@ -213,6 +220,26 @@ public class InputChecker : Component
     }
 
 
+    eResult Battle()
+    {
+        monster.Hit(player.Attack());
+
+        if (!monster.Death())
+        {
+            player.Hit(monster.Attack());
+
+            if (player.Death())
+            {
+                return eResult.Defeated;
+            }
+        }
+        else 
+        {
+            return eResult.Win;
+        }
+
+        return eResult.End;
+    }
 
     public override void Initailize()
     {
@@ -309,13 +336,33 @@ public class InputChecker : Component
 	public override void SceneLoad(eScene sceneNum)
 	{
 		base.SceneLoad(sceneNum);
-        
-        
 
-        
+        if (sceneNum > eScene.CharacterSelect)
+        {
+
+            if (player == null)
+            {
+                GameObject playerObj = GameObjectManager.Instance.FindGameObjectByName("Player");
+                if (playerObj!=null)
+                { 
+                    player= playerObj.GetComponent<Player>();
+                }
+			}
+
+            if (monster == null)
+            {
+                GameObject monsterObj = GameObjectManager.Instance.FindGameObjectByName("Monster");
+                if (monsterObj != null)
+                {
+                   monster = monsterObj.GetComponent<Monster>();
+                }
+            }
+
+        }
+
 
 
         //int a = 0;
-	}
+    }
 
 }

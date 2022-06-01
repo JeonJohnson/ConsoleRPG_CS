@@ -47,6 +47,7 @@ namespace Structs
 
 		public int dmg;
 	}
+	
 
 }
 
@@ -61,6 +62,7 @@ namespace Enums
 	{ 
 		End
 	}
+
 
 	public enum eScene
 	{ 
@@ -103,6 +105,13 @@ namespace Enums
 		Warrior,
 		Magician,
 		Rogue,
+		End
+	}
+
+	public enum eResult
+	{
+		Win,
+		Defeated,
 		End
 	}
 

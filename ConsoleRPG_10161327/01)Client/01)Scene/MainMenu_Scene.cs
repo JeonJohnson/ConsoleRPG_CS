@@ -43,10 +43,10 @@ public class MainMenu_Scene : Scene
 			GameObject menuButton = GameObject.Instantiate();
 			menuButton.transform.position.x = 6;
 			menuButton.AddRenderer<Renderer>().RenderStr = "1. Dungeon\n2. Shop\n3. Inventory";
-
-
-
 		}
+
+
+
 
 	}
 

@@ -63,10 +63,8 @@
     <Compile Include="01%29Client\02%29Component\Item\Item.cs" />
     <Compile Include="01%29Client\02%29Component\StatusViewer.cs" />
     <Compile Include="01%29Client\02%29Component\Unit\Monster\Monster.cs" />
-    <Compile Include="01%29Client\StatusDB\MagicianStatus.cs" />
-    <Compile Include="01%29Client\StatusDB\RogueStatus.cs" />
+    <Compile Include="01%29Client\StatusDB\ClassStatuses.cs" />
     <Compile Include="01%29Client\StatusDB\StatusSetting.cs" />
-    <Compile Include="01%29Client\StatusDB\WarriorStatus.cs" />
     <Compile Include="01%29Client\StatusDB\MonsterStatus.cs" />
     <Compile Include="01%29Client\02%29Component\Unit\Player\Player.cs" />
     <Compile Include="01%29Client\02%29Component\Unit\Unit.cs" />

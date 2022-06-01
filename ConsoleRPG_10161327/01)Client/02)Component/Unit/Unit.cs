@@ -63,9 +63,10 @@ public class Unit : Component
 	{
 		unitStatus.curHp -= dmg;
 
-		if (unitStatus.curHp < 0)
+		if (unitStatus.curHp <= 0)
 		{
 			unitStatus.curHp = 0;
+			unitStatus.isDeath = true;
 		}
 	}
 

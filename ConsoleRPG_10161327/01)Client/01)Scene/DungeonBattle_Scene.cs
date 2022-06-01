@@ -37,6 +37,11 @@ public class DungeonBattle_Scene : Scene
 			GameObject dungeonButton = GameObject.Instantiate();
 			dungeonButton.transform.position.x = 8;
 			dungeonButton.AddRenderer<Renderer>().RenderStr = "1. Attack\n2. Run\n3. Return MainMenu";
+			
+			GameObject temp = GameObject.Instantiate();
+			temp.AddRenderer<LineRenderer>();
+			temp.transform.position.x = 11;
+
 		}
 
 	}

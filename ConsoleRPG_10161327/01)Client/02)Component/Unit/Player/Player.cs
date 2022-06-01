@@ -21,9 +21,30 @@ public class Player : Unit
 		base.Hit(dmg);
 	}
 
+	public void GainExp(int exp, int gold)
+	{
+		unitStatus.curExp += exp;
+		unitStatus.gold += gold;
+
+		if (unitStatus.curExp >= unitStatus.fullExp)
+		{
+			LevelUp();
+		}
+	}
+
 	public override int LevelUp()
 	{
-		return base.LevelUp();
+		base.LevelUp();
+
+		unitStatus.dmg += 5;
+
+		unitStatus.curExp = 0;
+		unitStatus.fullExp = LV * 5 + 10;
+
+		unitStatus.fullHp += LV * 5;
+		unitStatus.curHp = unitStatus.fullHp;
+
+		return LV;
 	}
 
 	public override void Initailize()
@@ -34,6 +55,8 @@ public class Player : Unit
 	public override void Update()
 	{
 		base.Update();
+
+		
 	}
 
 	public override void ReadyRender()
