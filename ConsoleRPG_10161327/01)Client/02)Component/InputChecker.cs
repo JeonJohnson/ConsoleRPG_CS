@@ -23,6 +23,7 @@ public class InputChecker : Component
         set { battleInfo = value; }
     }
 
+    eBattleProgress curBattleState = eBattleProgress.End;
 
     void TitleSceneSelect(int selectNum)
     {
@@ -199,30 +200,43 @@ public class InputChecker : Component
         {
             case 1: //Attack
                 {
-                    Enums.eBattleResult temp = Battle();
 
-                    if (temp == eBattleResult.Win)
+                    if (curBattleState == eBattleProgress.End)
                     {
-                        battleInfo.BattleInfoStr = "\n";
-                        battleInfo.BattleInfoStr = string.Format("{0} Win!!!", player.Name);
+                        curBattleState = eBattleProgress.Ing;
+                    }
 
-                        battleInfo.BattleInfoStr = "\n";
-                        battleInfo.BattleInfoStr = string.Format("{0} takes {1} Gold, {2} EXP", player.Name, monster.Gold,monster.FullEXP);
+                    if (curBattleState == eBattleProgress.Ing)
+                    {
+                        Enums.eBattleResult temp = Battle();
 
-                        if (player.GainExp(monster.FullEXP, monster.Gold) > 0)
+                        if (temp == eBattleResult.Win)
                         {
+                            
+                            curBattleState = eBattleProgress.Fin;
+
                             battleInfo.BattleInfoStr = "\n";
-                            battleInfo.BattleInfoStr = "Player Lv Up!";
+                            battleInfo.BattleInfoStr = string.Format("{0} Win!!!", player.Name);
+
+                            battleInfo.BattleInfoStr = "\n";
+                            battleInfo.BattleInfoStr = string.Format("{0} takes {1} Gold, {2} EXP", player.Name, monster.Gold, monster.FullEXP);
+
+                            if (player.GainExp(monster.FullEXP, monster.Gold) > 0)
+                            {
+                                battleInfo.BattleInfoStr = "\n";
+                                battleInfo.BattleInfoStr = "Player Lv Up!";
+                            }
+                            //SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                         }
-                        //SceneManager.Instance.SceneChange(eScene.DungeonSelect);
-                    }
-                    else if (temp == eBattleResult.Defeated)
-                    {
-                        //SceneManager.Instance.SceneChange(eScene.MainMenu);
-                    }
-                    else
-                    { 
-                    
+                        else if (temp == eBattleResult.Defeated)
+                        {
+                            //SceneManager.Instance.SceneChange(eScene.MainMenu);
+                            curBattleState = eBattleProgress.Fin;
+                        }
+                        else
+                        {
+
+                        }
                     }
                     
 
@@ -350,7 +364,15 @@ public class InputChecker : Component
 
             case eScene.DungeonBattle:
                 {
-                    DungeonBattleScene(InputManager.Instance.GetInputValue());
+                    if (curBattleState != eBattleProgress.Fin)
+                    {
+                        DungeonBattleScene(InputManager.Instance.GetInputValue());
+                    }
+                    else if (curBattleState == eBattleProgress.Fin)
+                    {
+                        if (InputManager.Instance.GetInputValue() != -1)
+                        { SceneManager.Instance.SceneChange(eScene.DungeonSelect); }
+                    }
                 }
                 break;
 

@@ -29,6 +29,14 @@ public class Battle_Info : Component
 					tempArray[i] = value[i];
 				}
 			}
+
+			//if (infoStrQueue.Count == 0)
+			//{
+			//	tempArray[Defines.BufferX - 1] = '\n';
+			//	string tempStr2 = new string(tempArray);
+			//	infoStrQueue.Enqueue(tempStr2);
+			//}
+
 			tempArray[Defines.BufferX - 1] = '\n';
 			string tempStr = new string(tempArray);
 			infoStrQueue.Enqueue(tempStr);
