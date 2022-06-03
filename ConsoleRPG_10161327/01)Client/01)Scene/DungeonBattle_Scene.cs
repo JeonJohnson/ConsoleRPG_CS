@@ -15,7 +15,6 @@ public class DungeonBattle_Scene : Scene
 		{
 			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
 			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Dungeon Battle Scene";
-
 		}
 
 		{
@@ -42,6 +41,14 @@ public class DungeonBattle_Scene : Scene
 			temp.AddRenderer<LineRenderer>();
 			temp.transform.position.x = 11;
 
+		}
+
+		{
+			InputChecker inputCheckerComp = GameObjectManager.Instance.FindGameObjectByName("InputChecker").GetComponent<InputChecker>();
+			
+			GameObject battleInfoObj = GameObject.Instantiate("BattleInfo");
+			inputCheckerComp.setBattelInfoComponent = battleInfoObj.AddComponent<Battle_Info>();
+			battleInfoObj.transform.position.x = 12;
 		}
 
 	}

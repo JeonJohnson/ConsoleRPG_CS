@@ -14,7 +14,7 @@ public class MainMenu_Scene : Scene
 	{
 		{
 			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
-			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Main Menu Scene";
+			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Town Scene";
 		}
 
 		{

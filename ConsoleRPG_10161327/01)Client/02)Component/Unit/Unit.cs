@@ -49,6 +49,13 @@ public class Unit : Component
 		get { return unitStatus.fullHp; }
 	}
 
+	public int testdmg = 0;
+	public int testDmg
+	{
+		set {
+			//unitStatus.dmg += ++testdmg; 
+		}
+	}
 	public int DMG
 	{
 		get { return unitStatus.dmg; }

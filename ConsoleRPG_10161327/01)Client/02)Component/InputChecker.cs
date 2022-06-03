@@ -16,6 +16,12 @@ public class InputChecker : Component
 
     Player player = null;
     Monster monster = null;
+    
+    Battle_Info battleInfo = null;
+    public Battle_Info setBattelInfoComponent
+    {
+        set { battleInfo = value; }
+    }
 
 
     void TitleSceneSelect(int selectNum)
@@ -75,6 +81,21 @@ public class InputChecker : Component
                     playerScript.SetStatus = tempStatus.status;
 
                     SceneManager.Instance.NextSceneChange();
+                }
+                break;
+
+            case 7:
+                {
+                    tempStatus = new RogueStatus();
+                    tempStatus.status.name = "Tester";
+                    tempStatus.status.fullHp = 1000;
+                    tempStatus.status.curHp = tempStatus.status.fullHp;
+                    tempStatus.status.dmg = 1;
+                    Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+                    playerScript.SetStatus = tempStatus.status;
+
+                    SceneManager.Instance.NextSceneChange();
+
                 }
                 break;
 
@@ -176,18 +197,28 @@ public class InputChecker : Component
     {
         switch (selectNum)
         {
-            case 1:
+            case 1: //Attack
                 {
-                    Enums.eResult temp = Battle();
+                    Enums.eBattleResult temp = Battle();
 
-                    if (temp == eResult.Win)
+                    if (temp == eBattleResult.Win)
                     {
-                        player.GainExp(monster.FullEXP,monster.Gold);
-                        SceneManager.Instance.SceneChange(eScene.DungeonSelect);
+                        battleInfo.BattleInfoStr = "\n";
+                        battleInfo.BattleInfoStr = string.Format("{0} Win!!!", player.Name);
+
+                        battleInfo.BattleInfoStr = "\n";
+                        battleInfo.BattleInfoStr = string.Format("{0} takes {1} Gold, {2} EXP", player.Name, monster.Gold,monster.FullEXP);
+
+                        if (player.GainExp(monster.FullEXP, monster.Gold) > 0)
+                        {
+                            battleInfo.BattleInfoStr = "\n";
+                            battleInfo.BattleInfoStr = "Player Lv Up!";
+                        }
+                        //SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                     }
-                    else if (temp == eResult.Defeated)
+                    else if (temp == eBattleResult.Defeated)
                     {
-                        SceneManager.Instance.SceneChange(eScene.MainMenu);
+                        //SceneManager.Instance.SceneChange(eScene.MainMenu);
                     }
                     else
                     { 
@@ -198,17 +229,23 @@ public class InputChecker : Component
                 }
                 break;
 
-            case 2:
+            case 2: //Run
                 {
                     SceneManager.Instance.SceneChange(eScene.DungeonSelect);
                 }
                 break;
 
-            case 3:
+            case 3: //return MainMenu
                 {
                     SceneManager.Instance.SceneChange(eScene.MainMenu);
                 }
                 break;
+
+            case 4:
+                {
+                    monster.testDmg = 1;               }
+                break;
+
 
             case 9:
                 {
@@ -220,25 +257,32 @@ public class InputChecker : Component
     }
 
 
-    eResult Battle()
+    eBattleResult Battle()
     {
+        //battleInfo.BattleInfoStr = "\n";
         monster.Hit(player.Attack());
+        battleInfo.BattleInfoStr = string.Format("{0} takes {1} dmg from {2}", monster.Name, player.Attack(), player.Name);
+        //battleInfo.BattleInfoStr = 1.ToString();
 
         if (!monster.Death())
         {
             player.Hit(monster.Attack());
+            battleInfo.BattleInfoStr = string.Format("{0} takes {1} dmg from {2}", player.Name, monster.Attack(), monster.Name);
+            //battleInfo.BattleInfoStr = 2.ToString();
 
             if (player.Death())
             {
-                return eResult.Defeated;
+                battleInfo.BattleInfoStr = "\n";
+                battleInfo.BattleInfoStr = string.Format("{0} death, Return to MainMenu", player.Name);
+                return eBattleResult.Defeated;
             }
         }
         else 
         {
-            return eResult.Win;
+            return eBattleResult.Win;
         }
 
-        return eResult.End;
+        return eBattleResult.End;
     }
 
     public override void Initailize()

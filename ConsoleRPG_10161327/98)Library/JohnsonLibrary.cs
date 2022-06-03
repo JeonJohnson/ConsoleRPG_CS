@@ -108,10 +108,17 @@ namespace Enums
 		End
 	}
 
-	public enum eResult
+	public enum eBattleResult
 	{
 		Win,
 		Defeated,
+		End
+	}
+
+	public enum eBattleProgress
+	{ 
+		Ing,
+		Fin,
 		End
 	}
 

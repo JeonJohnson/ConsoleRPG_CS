@@ -21,15 +21,17 @@ public class Player : Unit
 		base.Hit(dmg);
 	}
 
-	public void GainExp(int exp, int gold)
+	public int GainExp(int exp, int gold)
 	{
 		unitStatus.curExp += exp;
 		unitStatus.gold += gold;
 
 		if (unitStatus.curExp >= unitStatus.fullExp)
 		{
-			LevelUp();
+			return LevelUp();
 		}
+
+		return 0;
 	}
 
 	public override int LevelUp()
