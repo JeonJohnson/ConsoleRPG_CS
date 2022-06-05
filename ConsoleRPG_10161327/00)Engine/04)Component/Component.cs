@@ -13,6 +13,13 @@ public abstract class Component : Cycle
 
     public GameObject gameObject = null;
 
+    bool enabled = true;
+    //true 일때 활성화
+    public bool Enabled
+    {
+        get { return enabled; }
+        set { enabled = value; }
+    }
     public virtual void Initailize()
     {
         if (SceneManager.Instance.sceneLoadEvent == null)

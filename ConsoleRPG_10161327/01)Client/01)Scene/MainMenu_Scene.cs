@@ -24,18 +24,26 @@ public class MainMenu_Scene : Scene
 			GameObject temp = GameObject.Instantiate();
 			temp.AddRenderer<LineRenderer>();
 			temp.transform.position.x = 3;
-		}
+		} 
 
 		{
-			GameObject statusViewer = GameObject.Instantiate("PlayerStatusViewer");
-			statusViewer.transform.position.x = 4;
-			Player tempScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
-			statusViewer.AddComponent<StatusViewer>().SetUnit = tempScript;
-			statusViewer.DontDestroy();
+			if (GameObjectManager.Instance.FindGameObjectByName("PlayerStatusViewer") == null)
+			{
+				GameObject statusViewer = GameObject.Instantiate("PlayerStatusViewer");
+				statusViewer.transform.position.x = 4;
+				Player tempScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
+				statusViewer.AddComponent<StatusViewer>().SetUnit = tempScript;
+				statusViewer.DontDestroy();
+			}
+			else 
+			{
+				GameObjectManager.Instance.FindGameObjectByName("PlayerStatusViewer").SetActive(true);
+			}
 
 			GameObject temp = GameObject.Instantiate();
 			temp.AddRenderer<LineRenderer>();
 			temp.transform.position.x = 5;
+
 		}
 
 

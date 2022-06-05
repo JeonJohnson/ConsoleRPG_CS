@@ -131,16 +131,34 @@ public class RenderManager : Manager<RenderManager>
             }
         }
 
-        //preRenderBuffer = curRenderBuffer;
+		//preRenderBuffer = curRenderBuffer;
 
-
-
+		for (int i = 0; i < Defines.BufferY; ++i)
+		{
+			for (int k = 0; k < Defines.BufferX; ++k)
+			{
+				curRenderBuffer[i, k] = ' ';
+			}
+		}
+		
+		
 		foreach (Renderer render in renderQueue)
 		{
+			if (render.Enabled == false)
+			{
+				continue;
+			}
+
+			if (render.gameObject.IsActive == false)
+			{
+				continue;
+			}
+
 			Vector2 pos = render.transform.position;
 			string str = render.RenderStr;
 
 			Vector2 tempPos = pos;
+
 			for (int i = 0; i < str.Length; ++i)
 			{
 				if (str[i] == '\n')

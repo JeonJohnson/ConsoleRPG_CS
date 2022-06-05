@@ -24,6 +24,16 @@ public class InputChecker : Component
     }
 
     eBattleProgress curBattleState = eBattleProgress.End;
+    public eBattleProgress CurBattleState
+    { 
+        set { curBattleState = value; }
+    }
+
+    eBattleResult curBattleResult = eBattleResult.End;
+    public eBattleResult CurBattleResult
+    {
+        set { curBattleResult = value; }
+    }
 
     void TitleSceneSelect(int selectNum)
     {
@@ -194,16 +204,16 @@ public class InputChecker : Component
         }
     }
 
-    void DungeonBattleScene(int selectNum)
+    eBattleResult DungeonBattleScene(int selectNum)
     {
         switch (selectNum)
         {
             case 1: //Attack
                 {
-
                     if (curBattleState == eBattleProgress.End)
                     {
                         curBattleState = eBattleProgress.Ing;
+                        return eBattleResult.End;
                     }
 
                     if (curBattleState == eBattleProgress.Ing)
@@ -227,46 +237,55 @@ public class InputChecker : Component
                                 battleInfo.BattleInfoStr = "Player Lv Up!";
                             }
                             //SceneManager.Instance.SceneChange(eScene.DungeonSelect);
+
+                            return eBattleResult.Win;
                         }
                         else if (temp == eBattleResult.Defeated)
                         {
                             //SceneManager.Instance.SceneChange(eScene.MainMenu);
                             curBattleState = eBattleProgress.Fin;
+
+                            return eBattleResult.Defeated;
                         }
                         else
                         {
-
+                            return eBattleResult.End;
                         }
                     }
-                    
-
                 }
-                break;
+                return eBattleResult.End;
+
 
             case 2: //Run
                 {
                     SceneManager.Instance.SceneChange(eScene.DungeonSelect);
+
                 }
-                break;
+                return eBattleResult.End;
+
 
             case 3: //return MainMenu
                 {
                     SceneManager.Instance.SceneChange(eScene.MainMenu);
                 }
-                break;
+                return eBattleResult.End;
 
             case 4:
                 {
-                    monster.testDmg = 1;               }
-                break;
+                    monster.testDmg = 1;               
+                }
+                return eBattleResult.End;
 
 
             case 9:
                 {
                     GameManager.Instance.IsQuit = true;
                 }
-                break;
+                return eBattleResult.End;
 
+
+            default:
+                return eBattleResult.End;
         }
     }
 
@@ -287,7 +306,7 @@ public class InputChecker : Component
             if (player.Death())
             {
                 battleInfo.BattleInfoStr = "\n";
-                battleInfo.BattleInfoStr = string.Format("{0} death, Return to MainMenu", player.Name);
+                battleInfo.BattleInfoStr = string.Format("YOU DIED, Return to Character Select Scene", player.Name);
                 return eBattleResult.Defeated;
             }
         }
@@ -364,14 +383,25 @@ public class InputChecker : Component
 
             case eScene.DungeonBattle:
                 {
+                    
+
                     if (curBattleState != eBattleProgress.Fin)
                     {
-                        DungeonBattleScene(InputManager.Instance.GetInputValue());
+                        curBattleResult = DungeonBattleScene(InputManager.Instance.GetInputValue());
                     }
                     else if (curBattleState == eBattleProgress.Fin)
                     {
                         if (InputManager.Instance.GetInputValue() != -1)
-                        { SceneManager.Instance.SceneChange(eScene.DungeonSelect); }
+                        {
+                            if (curBattleResult == eBattleResult.Defeated)
+                            { 
+
+                                SceneManager.Instance.SceneChange(eScene.CharacterSelect); 
+                            }
+                            else if (curBattleResult == eBattleResult.Win)
+                            { SceneManager.Instance.SceneChange(eScene.DungeonSelect); }
+                        
+                        }
                     }
                 }
                 break;

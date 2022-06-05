@@ -46,7 +46,18 @@ sealed public class GameObject : Cycle
 
 	public static GameObject Instantiate(string name)
 	{
-		GameObject newObj = new GameObject();
+		GameObject newObj = null;
+
+		newObj = GameObjectManager.Instance.FindGameObjectByName(name);
+
+		if (newObj != null)
+		{
+			return newObj;
+		}
+
+		newObj = new GameObject();
+
+
 
 		GameObjectManager.Instance.AddGameObject(newObj);
 		newObj.Name = name;
@@ -56,7 +67,17 @@ sealed public class GameObject : Cycle
 
 	public static GameObject Instantiate(int tag)
 	{
-		GameObject newObj = new GameObject();
+
+		GameObject newObj = null;
+
+		newObj = GameObjectManager.Instance.FindGameObjectByTag(tag);
+
+		if (newObj != null)
+		{
+			return newObj;
+		}
+
+		newObj = new GameObject();
 
 		GameObjectManager.Instance.AddGameObject(newObj);
 		newObj.tag = tag;
@@ -144,6 +165,11 @@ sealed public class GameObject : Cycle
 	{
 		get { return isActive; }
 		set { isActive = value; }
+	}
+
+	public void SetActive(bool _active)
+	{
+		isActive = _active;
 	}
 
 	bool isDead = false;
@@ -322,7 +348,9 @@ sealed public class GameObject : Cycle
 
 		foreach (KeyValuePair<string, Component> com in components)
 		{
-			com.Value.Update();
+			if (com.Value.Enabled)
+			{ com.Value.Update(); }
+			
 		}
 	}
 

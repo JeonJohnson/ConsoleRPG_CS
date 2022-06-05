@@ -45,7 +45,9 @@ public class DungeonBattle_Scene : Scene
 
 		{
 			InputChecker inputCheckerComp = GameObjectManager.Instance.FindGameObjectByName("InputChecker").GetComponent<InputChecker>();
-			
+			inputCheckerComp.CurBattleState = Enums.eBattleProgress.End;
+			inputCheckerComp.CurBattleResult = Enums.eBattleResult.End;
+
 			GameObject battleInfoObj = GameObject.Instantiate("BattleInfo");
 			inputCheckerComp.setBattelInfoComponent = battleInfoObj.AddComponent<Battle_Info>();
 			battleInfoObj.transform.position.x = 12;

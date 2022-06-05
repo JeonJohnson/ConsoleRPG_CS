@@ -35,6 +35,17 @@ class CharacterSelect_Scene : Scene
         temp2.transform.position.x = 5;
 
 
+
+        GameObject statusViewer = GameObjectManager.Instance.FindGameObjectByName("PlayerStatusViewer");
+        if (statusViewer != null)
+        { 
+            statusViewer.SetActive(false); 
+        }
+        
+
+
+
+
         StatusSetting warriorStatus = new WarriorStatus();
         StatusSetting magicianStatus = new MagicianStatus();
         StatusSetting rogueStatus = new RogueStatus();
