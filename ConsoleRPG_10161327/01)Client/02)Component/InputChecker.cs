@@ -102,6 +102,7 @@ public class InputChecker : Component
                     tempStatus.status.fullHp = 1000;
                     tempStatus.status.curHp = tempStatus.status.fullHp;
                     tempStatus.status.dmg = 1;
+                    tempStatus.status.gold = 1000;
                     Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
                     playerScript.SetStatus = tempStatus.status;
 

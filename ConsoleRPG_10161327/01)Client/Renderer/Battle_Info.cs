@@ -9,7 +9,7 @@ public class Battle_Info : Component
 {
 
 	Renderer battleInfoRenderer = null;
-	Renderer battleInfoEraser = null;
+	//Renderer battleInfoEraser = null;
 
 	Queue<string> infoStrQueue;
 	//FIFO

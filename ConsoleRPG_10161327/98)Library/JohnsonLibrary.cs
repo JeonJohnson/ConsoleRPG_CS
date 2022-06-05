@@ -46,8 +46,9 @@ namespace Structs
 		public int hp;
 
 		public int dmg;
+
+		public bool isEquipped;
 	}
-	
 
 }
 
@@ -96,7 +97,7 @@ namespace Enums
 	{
 		Weapon,
 		Armor,
-		Acc,
+		//Acc,
 		End
 	}
 

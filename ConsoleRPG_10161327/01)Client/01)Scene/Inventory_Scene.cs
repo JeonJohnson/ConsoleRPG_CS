@@ -9,8 +9,43 @@ class Inventory_Scene : Scene
 
     public override void Initailize()
     {
-        GameObject sceneName = GameObject.Instantiate();
-        sceneName.AddRenderer<Renderer>().RenderStr = "Inventory Scene";
-    }
+		{
+			GameObject sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
+			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Inventory";
+		}
+
+		{
+			GameObject notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
+			notice.GetRenderer<Renderer>().RenderStr = "if u were Input item number that equipped, that unequip.";
+
+			GameObject temp = GameObject.Instantiate();
+			temp.AddRenderer<LineRenderer>();
+			temp.transform.position.x = 3;
+
+			GameObject temp2 = GameObject.Instantiate();
+			temp2.AddRenderer<LineRenderer>();
+			temp2.transform.position.x = 5;
+		}
+
+		{
+			GameObject inventoryObj = GameObjectManager.Instance.FindGameObjectByName("Inventory");
+			
+
+
+			if (inventoryObj == null)
+			{
+				inventoryObj = GameObject.Instantiate("Inventory");
+				inventoryObj.transform.position.x = 6;
+				inventoryObj.AddComponent<Inventory>();
+
+				//Renderer inventoryRenderer = inventoryObj.AddRenderer<Renderer>();
+			}
+
+
+			//GameObject temp2 = GameObject.Instantiate();
+			//temp2.AddRenderer<LineRenderer>();
+			//temp2.transform.position.x = 8;
+		}
+	}
 
 }

@@ -8,7 +8,7 @@ public class DungeonBattle_Scene : Scene
 {
 
 	GameObject sceneNameObj = null;
-	GameObject notice = null;
+	//GameObject notice = null;
 
 	public override void Initailize()
 	{
