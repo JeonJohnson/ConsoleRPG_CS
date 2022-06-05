@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 public class MainMenu_Scene : Scene
 {
-	GameObject	sceneNameObj = null;
-	GameObject	notice = null;
 	public override void Initailize()
 	{
 		{
-			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
+			GameObject sceneNameObj  = GameObjectManager.Instance.FindGameObjectByName("SceneName");
 			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Town Scene";
 		}
 
 		{
-			notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
+			GameObject notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
+			//notice.GetRenderer<Renderer>().RenderStr = "Plz Select Next Map";
 			notice.GetRenderer<Renderer>().RenderStr = "Plz Select Next Map";
 
 			GameObject temp = GameObject.Instantiate();
@@ -51,7 +50,25 @@ public class MainMenu_Scene : Scene
 			menuButton.AddRenderer<Renderer>().RenderStr = "1. Dungeon\n2. Shop\n3. Inventory";
 		}
 
+		{
+			GameObject inventoryObj = GameObjectManager.Instance.FindGameObjectByName("Inventory");
 
+			if (inventoryObj == null)
+			{
+				inventoryObj = GameObject.Instantiate("Inventory");
+				inventoryObj.transform.position.x = 6;
+				inventoryObj.AddComponent<Inventory>();
+
+				inventoryObj.DontDestroy();
+
+				//Renderer inventoryRenderer = inventoryObj.AddRenderer<Renderer>();
+			}
+			//inventoryObj.SetActive(true);
+
+			//GameObject temp2 = GameObject.Instantiate();
+			//temp2.AddRenderer<LineRenderer>();
+			//temp2.transform.position.x = 8;
+		}
 
 
 	}

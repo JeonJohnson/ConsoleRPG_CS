@@ -140,7 +140,7 @@ public class Unit : Component
 
 	public override void Release()
 	{
-		base.Initailize();
+		base.Release();
 	}
 
 }

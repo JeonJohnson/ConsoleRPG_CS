@@ -65,7 +65,8 @@ public class InputManager : Manager<InputManager>
 
 	public void Release()
 	{
-
+		inputKeyCodes.Clear();
+		inputKeyCodes = null;
 	}
 
 }

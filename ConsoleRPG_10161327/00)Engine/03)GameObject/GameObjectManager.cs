@@ -127,7 +127,7 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 		//bool temp = gameObjectList[0].IsDontDestroyed;
 
 		for (int i = gameObjectList.Count - 1; i >= 0; --i)
-		{
+		{//List 항목 지워야 할 떄
 			if (!gameObjectList[i].IsDontDestroyed)
 			{
 				gameObjectList[i] = null;
@@ -151,6 +151,9 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 
 		foreach (GameObject obj in gameObjectList)
 		{
+			if (!obj.IsActive)
+			{ continue; }
+
 			obj.Update();
 		}
 
@@ -160,6 +163,9 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 	{
 		foreach (GameObject obj in gameObjectList)
 		{
+			if (!obj.IsActive)
+			{ continue; }
+
 			obj.ReadyRender();
 		}
 
@@ -169,5 +175,16 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 
 	public void Release()
 	{
+		MergeNewGameObjects();
+		newGameObjectList.Clear();
+		newGameObjectList = null;
+
+		foreach (GameObject obj in gameObjectList)
+		{
+			obj.Release();
+		}
+		gameObjectList.Clear();
+		gameObjectList = null;
+
 	}
 }

@@ -14,10 +14,8 @@ class Shop_Scene : Scene
         }
 
         {
-            GameObject notice = GameObject.Instantiate("Notice");
-            notice.transform.position.x = 2;
-            notice.AddRenderer<Renderer>().RenderStr = "Select Item Kind";
-            notice.DontDestroy();
+            GameObject notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
+            notice.GetRenderer<Renderer>().RenderStr = "Select Menu";
 
             GameObject temp = GameObject.Instantiate();
             temp.AddRenderer<LineRenderer>();
@@ -30,9 +28,27 @@ class Shop_Scene : Scene
             temp2.transform.position.x = 5;
         }
 
-        { 
+        {
+            GameObject shopObj = GameObjectManager.Instance.FindGameObjectByName("Shop");
+
+            if (shopObj == null)
+            {
+                shopObj = GameObject.Instantiate("Shop");
+                shopObj.AddComponent<Shop>();
+                shopObj.transform.position.x = 6;
+                shopObj.DontDestroy();
+            }
             
-        
+        }
+
+        {
+            GameObject returnMainMenu = GameObject.Instantiate("Return");
+            returnMainMenu.transform.position.x = 27;
+            returnMainMenu.AddRenderer<Renderer>().RenderStr = "8. Return MainMenu";
+
+            GameObject temp2 = GameObject.Instantiate();
+            temp2.AddRenderer<LineRenderer>();
+            temp2.transform.position.x = 26;
         }
     }
 

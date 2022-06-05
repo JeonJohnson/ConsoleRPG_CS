@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 class DungeonSelect_Scene : Scene
 {
-	GameObject sceneNameObj = null;
-	GameObject notice = null;
 
 	public override void Initailize()
     {
 		{
-			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
+			GameObject sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
 			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Dungeon Select Scene";
 		}
 
 		{
-			notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
+			GameObject notice = GameObjectManager.Instance.FindGameObjectByName("Notice");
 			notice.GetRenderer<Renderer>().RenderStr = "Plz Select Monster";
 
 			GameObject temp = GameObject.Instantiate();
@@ -44,8 +42,6 @@ class DungeonSelect_Scene : Scene
 				monster.AddComponent<Monster>();
 				monster.DontDestroy();
 			}
-
-
 			
 		
 		}

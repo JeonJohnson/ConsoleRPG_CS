@@ -17,7 +17,7 @@ namespace Weapon
 	{
 		public WoodStick()
 		{
-			status.name = "WoodStick";
+			status.name = "Stick";
 			status.kind = eItemKind.Weapon;
 			status.price = 50;
 			status.requiredLv = 1;

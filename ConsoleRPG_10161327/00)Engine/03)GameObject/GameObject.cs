@@ -23,7 +23,9 @@ sealed public class GameObject : Cycle
 	}
 
 	~GameObject()
-	{ }
+	{
+		Release();
+	}
 
 	public static GameObject Instantiate(Structs.GameObjectDesc desc, params Component[] components)
 	{
@@ -364,6 +366,25 @@ sealed public class GameObject : Cycle
 
 	public void Release()
 	{
+		MergeNewComponents();
+		newComponents.Clear();
+		newComponents = null;
+
+		foreach (KeyValuePair<string,Component> com in components)
+		{
+			com.Value.Release();
+		}
+		components.Clear();
+		components = null;
+
+
+		foreach (KeyValuePair<string,Renderer> renderer in renderers)
+		{
+			renderer.Value.Release();
+		}
+		renderers.Clear();
+		renderers = null;
+
 	}
 
 }

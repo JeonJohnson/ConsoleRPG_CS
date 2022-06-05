@@ -9,6 +9,9 @@ using JohnsonMath;
 public class RenderManager : Manager<RenderManager>
 {
 	//SortedDictionary<int, List<Renderer>> renderQueue;
+	~RenderManager()
+	{ Release(); }
+
 
 	List<Renderer> renderQueue;
 
@@ -157,31 +160,38 @@ public class RenderManager : Manager<RenderManager>
 			Vector2 pos = render.transform.position;
 			string str = render.RenderStr;
 
+
 			Vector2 tempPos = pos;
 
-			for (int i = 0; i < str.Length; ++i)
+			if (str != null)
 			{
-				if (str[i] == '\n')
+				for (int i = 0; i < str.Length; ++i)
 				{
-					pos.y = 0;
-					++pos.x;
-					continue;
-				}
-				else 
-				{
-					curRenderBuffer[pos.x, pos.y] = str[i];
-				}
 
-				++pos.y;
+					if (str[i] == '\n')
+					{
+						pos.y = 0;
+						++pos.x;
+						continue;
+					}
+					else
+					{
+						curRenderBuffer[pos.x, pos.y] = str[i];
+					}
 
-				if (pos.y >= Defines.BufferX)
-				{
-					pos.y = 0;
-					++pos.x;
+					++pos.y;
+
+					if (pos.y >= Defines.BufferX)
+					{
+						pos.y = 0;
+						++pos.x;
+					}
+					//버퍼길이 넘어가면 다음줄 넘기기 예외추가해야함
 				}
-				//버퍼길이 넘어가면 다음줄 넘기기 예외추가해야함
 			}
+
 		}
+			
 
 		for (int i = 0; i < Defines.BufferX; ++i)
 		{
@@ -206,6 +216,15 @@ public class RenderManager : Manager<RenderManager>
 
 		ClearRenderList();
 
+	}
+
+	public void Release()
+	{
+		renderQueue.Clear();
+		renderQueue = null;
+
+		preRenderBuffer = null;
+		curRenderBuffer = null;
 	}
 	
 

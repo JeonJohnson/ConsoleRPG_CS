@@ -178,6 +178,9 @@ public class SceneManager : Manager<SceneManager> , Cycle
 	public void Release()
 	{
 		//GameObjectManager에서 오브젝트들 지워주기
+		InputManager.Instance.Release();
+		GameObjectManager.Instance.Release();
+		RenderManager.Instance.Release();
 	}
 
 }

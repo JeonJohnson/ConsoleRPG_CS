@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 public class DungeonBattle_Scene : Scene
 {
 
-	GameObject sceneNameObj = null;
-	//GameObject notice = null;
 
 	public override void Initailize()
 	{
 		{
-			sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
+			GameObject  sceneNameObj = GameObjectManager.Instance.FindGameObjectByName("SceneName");
 			sceneNameObj.GetRenderer<Renderer>().RenderStr = "Dungeon Battle Scene";
 		}
 

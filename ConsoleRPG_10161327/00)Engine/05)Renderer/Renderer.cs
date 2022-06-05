@@ -16,7 +16,9 @@ public class Renderer : Component
 
 
     ~Renderer()
-    { }
+    {
+        Release();
+    }
     //Console RPG니까 string형 하나 가지고 있고
     //그거 Console Write 해주기
 
@@ -77,6 +79,8 @@ public class Renderer : Component
 
 
     public override void Release()
-    { }
+    {
+        base.Release();
+    }
 
 }

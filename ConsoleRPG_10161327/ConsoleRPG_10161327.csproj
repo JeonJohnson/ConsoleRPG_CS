@@ -86,8 +86,6 @@
   <ItemGroup>
     <None Include="99%29Etc\App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="01%29Client\02%29Component\Unit\Class\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

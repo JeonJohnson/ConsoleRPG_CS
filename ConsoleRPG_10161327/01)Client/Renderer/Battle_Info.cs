@@ -39,6 +39,14 @@ public class Battle_Info : Component
 
 			tempArray[Defines.BufferX - 1] = '\n';
 			string tempStr = new string(tempArray);
+
+			if (infoStrQueue.Count == 0)
+			{
+				if (tempStr[0] == ' ')
+				{
+					return;
+				}
+			}
 			infoStrQueue.Enqueue(tempStr);
 		}
 	}
@@ -74,7 +82,7 @@ public class Battle_Info : Component
 		//플레이어 죽은지 파악
 		//'Player Death' return MainMenu
 
-		for (int i = infoStrQueue.Count; i > 16; --i)
+		for (int i = infoStrQueue.Count; i > 15; --i)
 		{
 			infoStrQueue.Dequeue();
 		}

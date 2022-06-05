@@ -49,6 +49,15 @@ public class Player : Unit
 		return LV;
 	}
 
+	public void Buy(int price)
+	{
+		unitStatus.gold -= price;
+	}
+
+	public void Sell(int price)
+	{
+		unitStatus.gold += price;
+	}
 	public override void Initailize()
 	{
 		base.Initailize();

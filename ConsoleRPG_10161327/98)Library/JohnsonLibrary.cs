@@ -123,6 +123,15 @@ namespace Enums
 		End
 	}
 
+	public enum eShopState
+	{ 
+		Select,
+		Weapon_Buy,
+		Armor_Buy,
+		Sell,
+		End
+	}
+
 }
 
 public static class Fucns

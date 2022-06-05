@@ -47,6 +47,7 @@ public abstract class Component : Cycle
     public virtual void Release()
     {
         SceneManager.Instance.sceneLoadEvent -= SceneLoad;
+        gameObject = null;
     }
 
 

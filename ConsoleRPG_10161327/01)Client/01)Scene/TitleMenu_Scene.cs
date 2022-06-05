@@ -19,8 +19,6 @@ class TitleMenu_Scene : Scene
         sceneNameBorder.AddRenderer<LineRenderer>();
         GameObject.DontDestroy(sceneNameBorder);
 
-
-
         GameObject title = GameObject.Instantiate();
         title.transform.position.x = 2;
         Renderer titleRenderer = Renderer.Instantiate();

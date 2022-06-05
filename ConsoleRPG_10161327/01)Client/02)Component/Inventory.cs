@@ -13,7 +13,12 @@ public class Inventory : Component
 	Renderer inventoryRenderer = null;
 
 	Item[] equippedItems;
+	
 	List<Item> itemList;
+	public List<Item> ItemList
+	{
+		get { return itemList; }
+	}
 
 	string line = "";
 	public void AddItem(Item item)
@@ -83,12 +88,12 @@ public class Inventory : Component
 
 		itemList = new List<Item>();
 
-		//Item test = new Weapon.Ak47();
-		//itemList.Add(test);
-		//Item test3 = new Weapon.Sword();
-		//itemList.Add(test3);
-		//Item test2 = new Armor.GucciSet();
-		//itemList.Add(test2);
+		Item test = new Weapon.Ak47();
+		itemList.Add(test);
+		Item test3 = new Weapon.Sword();
+		itemList.Add(test3);
+		Item test2 = new Armor.GucciSet();
+		itemList.Add(test2);
 
 		inventoryRenderer = this.gameObject.AddRenderer<Renderer>();
 
@@ -103,15 +108,11 @@ public class Inventory : Component
 
 	public override void Update()
 	{
-		if (SceneManager.Instance.CurScene.SceneNum != Enums.eScene.Inventory)
-		{
-			gameObject.SetActive(false);
-			inventoryRenderer.Enabled = false;
-			return;
-		}
-		else { inventoryRenderer.Enabled = true; }
 
-		InputChecker();
+		if (SceneManager.Instance.CurScene.SceneNum == eScene.Inventory)
+		{
+			InputChecker();
+		}
 
 		string[] equipItemStr = new string[(int)eItemKind.End];
 		equipItemStr[(int)eItemKind.Weapon] = "Weapon : ";
@@ -163,11 +164,6 @@ public class Inventory : Component
 		//	inventoryRenderer.RenderStr += ";
 		inventoryRenderer.RenderStr += haveItems;
 
-
-
-
-
-
 	}
 
 	public override void ReadyRender()
@@ -178,11 +174,32 @@ public class Inventory : Component
 	public override void Release()
 	{
 		base.Release();
+		playerScript = null;
+
+		inventoryRenderer = null;
+		
+		for (int i = 0; i < equippedItems.Length; ++i)
+		{ equippedItems[i] = null; }
+
+		itemList.Clear();
+		itemList = null;
+		//아이템 리스트 null 해주기
 	}
 
 	public override void SceneLoad(eScene sceneNum)
 	{
 		base.SceneLoad(sceneNum);
+
+		if (sceneNum != Enums.eScene.Inventory)
+		{
+			gameObject.SetActive(false);
+			//inventoryRenderer.Enabled = false;
+		}
+		else 
+		{
+			gameObject.SetActive(true);
+			//inventoryRenderer.Enabled = true; 
+		}
 	}
 
 }

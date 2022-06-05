@@ -215,7 +215,7 @@ public class InputChecker : Component
                     if (curBattleState == eBattleProgress.End)
                     {
                         curBattleState = eBattleProgress.Ing;
-                        return eBattleResult.End;
+                        //return eBattleResult.End;
                     }
 
                     if (curBattleState == eBattleProgress.Ing)
@@ -296,6 +296,7 @@ public class InputChecker : Component
     {
         //battleInfo.BattleInfoStr = "\n";
         monster.Hit(player.Attack());
+        battleInfo.BattleInfoStr = "\n";
         battleInfo.BattleInfoStr = string.Format("{0} takes {1} dmg from {2}", monster.Name, player.Attack(), player.Name);
         //battleInfo.BattleInfoStr = 1.ToString();
 
@@ -439,6 +440,11 @@ public class InputChecker : Component
     public override void Release()
     {
         base.Release();
+
+        inputRenderer = null;
+        player = null;
+        monster = null;
+        battleInfo = null;
     }
 
 	public override void SceneLoad(eScene sceneNum)
