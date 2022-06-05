@@ -46,7 +46,12 @@ public class Unit : Component
 
 	public int FullHp
 	{
+		//set { FullHp = value; }
 		get { return unitStatus.fullHp; }
+	}
+	public void AddFullHp(int _val)
+	{
+		unitStatus.fullHp += _val;
 	}
 
 	public int testdmg = 0;
@@ -61,10 +66,18 @@ public class Unit : Component
 		get { return unitStatus.dmg; }
 	}
 
+	public void AddDmg(int _val)
+	{
+		unitStatus.dmg += _val;
+	}
+
+
 	public int Gold
 	{
 		get { return unitStatus.gold; }
 	}
+	public void AddGold(int _val)
+	{ unitStatus.gold += _val; }
 
 	public virtual void Hit(int dmg)
 	{
@@ -87,6 +100,18 @@ public class Unit : Component
 		++unitStatus.Lv;
 
 		return unitStatus.Lv;
+	}
+
+	public void EquippedItem(ItemStatus status, int _val = 1)
+	{
+		unitStatus.dmg += status.dmg * _val;
+
+		unitStatus.fullHp += status.hp * _val;
+
+		if (unitStatus.curHp > unitStatus.fullHp)
+		{
+			unitStatus.curHp = unitStatus.fullHp;
+		}
 	}
 
 	public virtual void Heal(int healAmount)

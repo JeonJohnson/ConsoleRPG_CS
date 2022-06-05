@@ -52,6 +52,7 @@ public class InputManager : Manager<InputManager>
 	{
 		int tempVal = inputVal;
 		inputVal = -1;
+
 		return tempVal;
 	}
 

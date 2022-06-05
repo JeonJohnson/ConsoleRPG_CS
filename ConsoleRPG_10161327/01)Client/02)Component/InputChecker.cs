@@ -101,6 +101,7 @@ public class InputChecker : Component
                     tempStatus.status.name = "Tester";
                     tempStatus.status.fullHp = 1000;
                     tempStatus.status.curHp = tempStatus.status.fullHp;
+                    tempStatus.status.Lv = 10;
                     tempStatus.status.dmg = 1;
                     tempStatus.status.gold = 1000;
                     Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
@@ -384,8 +385,6 @@ public class InputChecker : Component
 
             case eScene.DungeonBattle:
                 {
-                    
-
                     if (curBattleState != eBattleProgress.Fin)
                     {
                         curBattleResult = DungeonBattleScene(InputManager.Instance.GetInputValue());
@@ -412,7 +411,19 @@ public class InputChecker : Component
                 break;
 
             case eScene.Inventory:
-                { }
+                {
+                    ////구매 자체는 인벤토리에서 함.
+                    //if (InputManager.Instance.GetInputValue() == 8)
+                    //{
+                    //    SceneManager.Instance.SceneChange(eScene.MainMenu);
+                    //}
+
+                    //if (InputManager.Instance.GetInputValue() == 9)
+                    //{
+                    //    GameManager.Instance.IsQuit = true;
+                    //}
+
+                }
                 break;
                
         }

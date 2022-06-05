@@ -29,22 +29,33 @@ class Inventory_Scene : Scene
 
 		{
 			GameObject inventoryObj = GameObjectManager.Instance.FindGameObjectByName("Inventory");
-			
-
 
 			if (inventoryObj == null)
 			{
 				inventoryObj = GameObject.Instantiate("Inventory");
 				inventoryObj.transform.position.x = 6;
 				inventoryObj.AddComponent<Inventory>();
+				
+				inventoryObj.DontDestroy();
 
 				//Renderer inventoryRenderer = inventoryObj.AddRenderer<Renderer>();
 			}
-
+			inventoryObj.SetActive(true);
 
 			//GameObject temp2 = GameObject.Instantiate();
 			//temp2.AddRenderer<LineRenderer>();
 			//temp2.transform.position.x = 8;
+		}
+		
+		{
+			GameObject returnMainMenu = GameObject.Instantiate();
+			returnMainMenu.transform.position.x = 27;
+			returnMainMenu.AddRenderer<Renderer>().RenderStr = "8. Return MainMenu";
+
+			GameObject temp2 = GameObject.Instantiate();
+			temp2.AddRenderer<LineRenderer>();
+			temp2.transform.position.x = 26;
+
 		}
 	}
 
