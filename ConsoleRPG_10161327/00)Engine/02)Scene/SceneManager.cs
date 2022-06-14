@@ -165,7 +165,6 @@ public class SceneManager : Manager<SceneManager> , Cycle
 
 	public void ReadyRender()
 	{
-
 		GameObjectManager.Instance.ReadyRender();
 	}
 

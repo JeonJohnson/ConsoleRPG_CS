@@ -24,7 +24,6 @@ public class GameManager : Manager<GameManager>
 		isQuit = true;
 	}
 
-
 	Vector2 cursorPos;
 	public Vector2 CursorPos
 	{
@@ -38,9 +37,6 @@ public class GameManager : Manager<GameManager>
 			cursorPos = value;
 		}
 	}
-	
-	
-
 
 	public void SceneSetting()
 	{

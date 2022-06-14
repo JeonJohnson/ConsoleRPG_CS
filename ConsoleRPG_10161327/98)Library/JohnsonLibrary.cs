@@ -97,7 +97,6 @@ namespace Enums
 	{
 		Weapon,
 		Armor,
-		//Acc,
 		End
 	}
 
