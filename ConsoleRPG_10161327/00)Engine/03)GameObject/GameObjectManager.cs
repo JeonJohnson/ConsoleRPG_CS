@@ -22,7 +22,6 @@ public class GameObjectManager : Manager<GameObjectManager>, Cycle
 	{
 		GameObject tempObj = null;
 
-
 		//for문 돌리면서 찾기
 		//foreach (GameObject obj in newGameObjectList)
 		//{

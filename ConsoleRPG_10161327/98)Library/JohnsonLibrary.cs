@@ -147,6 +147,7 @@ public static class Fucns
 }
 public static class Defines
 {
+	//c++ #define 대용으로 사용하기 위해
 	public const int TestConstant = 1;
 
 	public const int BufferX = 64;

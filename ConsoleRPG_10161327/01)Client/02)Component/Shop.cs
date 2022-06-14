@@ -240,11 +240,11 @@ public class Shop : Component
 
 		for (int i = 0; i < (int)eItemKind.End; ++i)
 		{
-			shopItemList[i].Clear();
+			if (shopItemList[i] != null)
+			{ shopItemList[i].Clear(); }
 			shopItemList[i] = null;
 		}
 
-		//eShopState curShopState = eShopState.End;
 
 		inventoryScript = null;
 		playerScript = null;

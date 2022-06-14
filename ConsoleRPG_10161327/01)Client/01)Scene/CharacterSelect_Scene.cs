@@ -43,9 +43,6 @@ class CharacterSelect_Scene : Scene
         }
         
 
-
-
-
         StatusSetting warriorStatus = new WarriorStatus();
         StatusSetting magicianStatus = new MagicianStatus();
         StatusSetting rogueStatus = new RogueStatus();
@@ -53,10 +50,14 @@ class CharacterSelect_Scene : Scene
         string tempStr = "|";
         GameObject WarriorSelect = GameObject.Instantiate();
         WarriorSelect.transform.position.x = 6;
+
+        //문자열 연결 방법 1
         //WarriorSelect.AddRenderer<Renderer>().RenderStr = "1. ";
         //WarriorSelect.GetRenderer<Renderer>().RenderStr += warriorStatus.status.name + " | ";
         //WarriorSelect.GetRenderer<Renderer>().RenderStr += warriorStatus.status.fullHp.ToString() + " | ";
         //WarriorSelect.GetRenderer<Renderer>().RenderStr += warriorStatus.status.dmg.ToString();
+
+        //연결 방법 2
         WarriorSelect.AddRenderer<Renderer>().RenderStr = $"1. {warriorStatus.status.name}  {tempStr} {warriorStatus.status.fullHp } {tempStr} {warriorStatus.status.dmg}";
 
 

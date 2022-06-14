@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 public class SceneManager : Manager<SceneManager> , Cycle
 {
-
 	public  delegate void SceneLoadEvent(Enums.eScene sceneEnum);
 	public SceneLoadEvent sceneLoadEvent = null;
-
 
 	bool isSceneChange = false;
 
@@ -115,6 +113,7 @@ public class SceneManager : Manager<SceneManager> , Cycle
 
 	public void SceneChange(Enums.eScene scene)
 	{
+		//enum형으로 미리 지정해둔 이유
 		isSceneChange = true;
 
 		nextScene = sceneDictionary[(int)scene];

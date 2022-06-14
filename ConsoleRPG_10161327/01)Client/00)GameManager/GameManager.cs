@@ -8,6 +8,9 @@ using System.Windows;
 using JohnsonMath;
 public class GameManager : Manager<GameManager>
 {
+	//Manager -> 싱글톤 패턴 사용 위해서
+		//제네릭 클래스 활용.
+
 	public GameManager()
 	{
 		Initialize();
@@ -40,6 +43,8 @@ public class GameManager : Manager<GameManager>
 
 	public void SceneSetting()
 	{
+		//Unity 빌드에서 씬 넣어주는 느낌.
+		//Enums에서 미리 지정해둠(씬 넘버)
 		Scene titleMenu = Scene.Instantiate<TitleMenu_Scene>(Enums.eScene.TitleMenu);
 		Scene charSelect = Scene.Instantiate<CharacterSelect_Scene>(Enums.eScene.CharacterSelect);
 		Scene mainMenu = Scene.Instantiate<MainMenu_Scene>(Enums.eScene.MainMenu);
@@ -48,20 +53,24 @@ public class GameManager : Manager<GameManager>
 		Scene dungeonSelect = Scene.Instantiate<DungeonSelect_Scene>(Enums.eScene.DungeonSelect);
 		Scene dungeonBattle = Scene.Instantiate<DungeonBattle_Scene>(Enums.eScene.DungeonBattle);
 
+		
 		SceneManager.Instance.InsertScene(titleMenu, charSelect, mainMenu, shop, inventory, dungeonSelect, dungeonBattle);
 	}
 
+
+	//사이클
 	public void Initialize()
 	{
+		//기본 사이클에 필요한 매니저들 생성.
 		RenderManager.Instance.Initailize();
 		SceneManager.Instance.Initailize();
 		GameObjectManager.Instance.Initailize();
+		InputManager.Instance.Initialize();
+
 
 		//scene Setting//
 		SceneSetting();
 		SceneManager.Instance.SetFirstScene<TitleMenu_Scene>();
-
-		InputManager.Instance.Initialize();
 	}
 
 	

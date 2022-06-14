@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 sealed public class GameObject : Cycle
 {
-	public GameObject(Structs.GameObjectDesc desc)
-	{
-		name = desc.name;
-		tag = (int)desc.tag;
-		layer = (int)desc.layer;
+	//public GameObject(Structs.GameObjectDesc desc)
+	//{
+	//	name = desc.name;
+	//	tag = (int)desc.tag;
+	//	layer = (int)desc.layer;
 
-
-		Initailize();
-		//Awake();
-	}
+	//	Initailize();
+	//	//Awake();
+	//}
 
 	public GameObject()
 	{
@@ -24,27 +23,27 @@ sealed public class GameObject : Cycle
 
 	~GameObject()
 	{
-		Release();
+		//Release();
 	}
 
-	public static GameObject Instantiate(Structs.GameObjectDesc desc, params Component[] components)
-	{
-		//폐기
-		GameObject newObj = /*new GameObject(desc)*/ null;
+	//public static GameObject Instantiate(Structs.GameObjectDesc desc, params Component[] components)
+	//{
+	//	//폐기
+	//	GameObject newObj = /*new GameObject(desc)*/ null;
 
-		//GameObjectManager.Instance.AddGameObject(newObj);
+	//	//GameObjectManager.Instance.AddGameObject(newObj);
 
-		return newObj;
-	}
+	//	return newObj;
+	//}
 
-	public static GameObject Instantiate(Structs.GameObjectDesc desc)
-	{
-		GameObject newObj = new GameObject(desc);
+	//public static GameObject Instantiate(Structs.GameObjectDesc desc)
+	//{
+	//	GameObject newObj = new GameObject(desc);
 
-		GameObjectManager.Instance.AddGameObject(newObj);
+	//	GameObjectManager.Instance.AddGameObject(newObj);
 
-		return newObj;
-	}
+	//	return newObj;
+	//}
 
 	public static GameObject Instantiate(string name)
 	{
@@ -59,8 +58,6 @@ sealed public class GameObject : Cycle
 
 		newObj = new GameObject();
 
-
-
 		GameObjectManager.Instance.AddGameObject(newObj);
 		newObj.Name = name;
 
@@ -69,7 +66,6 @@ sealed public class GameObject : Cycle
 
 	public static GameObject Instantiate(int tag)
 	{
-
 		GameObject newObj = null;
 
 		newObj = GameObjectManager.Instance.FindGameObjectByTag(tag);
@@ -102,34 +98,15 @@ sealed public class GameObject : Cycle
 	{
 		GameObject newObj = new GameObject();
 
-
 		GameObjectManager.Instance.AddGameObject(newObj);
 		return newObj;
 	}
-
-	//public static GameObject CopyObject(GameObject prefab)
-	//{ 
-	//}
 
 	public static void Destroy(GameObject gameObject)
 	{
 		gameObject.isDead = true;
 	}
 
-	public void Destory()
-	{
-		this.isDead = true;
-	}
-
-
-	public static void DontDestroy(GameObject gameObject)
-	{
-		gameObject.IsDontDestroyed = true;
-	}
-	public void DontDestroy()
-	{
-		this.IsDontDestroyed = true;
-	}
 
 
 	string name;
@@ -158,10 +135,15 @@ sealed public class GameObject : Cycle
 	List<KeyValuePair<string, Component>> newComponents = new List<KeyValuePair<string, Component>>();
 	//두개 따로 놔둔 이유 : 중간에 컴포넌트가 추가 되더라도
 	//다 같은 실행 시기 맞춰주기 위해서.
+	//ex) Update말고 LateUpdate나 ReadyRender 같은 곳에서 컴포넌트가
+	//추가 되는데 바로 그 부분 부터 실행이 될 경우
+	//해당 컴포넌트도 Update에서 사전적으로 처리가 되어야 하는 부분이 있다면 위험.	
 
 	List<KeyValuePair<string, Renderer>> renderers = new List<KeyValuePair<string, Renderer>>();
+	//C++에서 map보다 vector에 pair 객체 넣는게 더 빨랐어서 
 
 
+	//false 이면 다음 프레임 부터cycle 동작 중지
 	bool isActive = true;
 	public bool IsActive
 	{
@@ -174,11 +156,17 @@ sealed public class GameObject : Cycle
 		isActive = _active;
 	}
 
+	//isActive는 작동 유무지만
+	//이거 트루면 다음 프레임때 GameObjectManager에서 아예 없애버림
 	bool isDead = false;
 	public bool IsDead
 	{
 		get { return isDead; }
 		set { isDead = value; }
+	}
+	public void Destory()
+	{
+		this.isDead = true;
 	}
 
 	bool isDontDestroyed = false;
@@ -186,7 +174,17 @@ sealed public class GameObject : Cycle
 	{
 		get { return isDontDestroyed; }
 		set { isDontDestroyed = value; }
-	} 
+	}
+
+	public static void DontDestroy(GameObject gameObject)
+	{// 스태틱 함수라서 GameObject.DontDestory로 호출해서 사용가능.
+		gameObject.IsDontDestroyed = true;
+	}
+	public void DontDestroy()
+	{//해당 GameObject의 멤버함수로 호출해서 사용가능. 
+		this.IsDontDestroyed = true;
+	}
+
 
 	public Transform transform = null;
 
@@ -224,7 +222,6 @@ sealed public class GameObject : Cycle
 			renderer.gameObject = this;
 			renderer.Initailize();
 
-
 			string rendererName = typeof(T).Name;
 			KeyValuePair<string, Renderer> rendererPair = new KeyValuePair<string, Renderer>(rendererName, renderer);
 			renderers.Add(rendererPair);
@@ -258,7 +255,6 @@ sealed public class GameObject : Cycle
 		}
 
 		string componentName = typeof(T).Name;
-
 
 		//if (componentName == "Renderer")
 		//{
@@ -311,7 +307,6 @@ sealed public class GameObject : Cycle
 			{
 				return newComponent.Value as T;
 			}
-			
 		}
 
 		return null;

@@ -14,7 +14,6 @@ public abstract class Component : Cycle
     public GameObject gameObject = null;
 
     bool enabled = true;
-    //true 일때 활성화
     public bool Enabled
     {
         get { return enabled; }
@@ -46,6 +45,7 @@ public abstract class Component : Cycle
     //}
     public virtual void Release()
     {
+        //델리게이트 체인 끊기 
         SceneManager.Instance.sceneLoadEvent -= SceneLoad;
         gameObject = null;
     }

@@ -88,12 +88,12 @@ public class Inventory : Component
 
 		itemList = new List<Item>();
 
-		Item test = new Weapon.Ak47();
-		itemList.Add(test);
-		Item test3 = new Weapon.Sword();
-		itemList.Add(test3);
-		Item test2 = new Armor.GucciSet();
-		itemList.Add(test2);
+		//Item test = new Weapon.Ak47();
+		//itemList.Add(test);
+		//Item test3 = new Weapon.Sword();
+		//itemList.Add(test3);
+		//Item test2 = new Armor.GucciSet();
+		//itemList.Add(test2);
 
 		inventoryRenderer = this.gameObject.AddRenderer<Renderer>();
 
@@ -181,7 +181,8 @@ public class Inventory : Component
 		for (int i = 0; i < equippedItems.Length; ++i)
 		{ equippedItems[i] = null; }
 
-		itemList.Clear();
+		if (itemList != null)
+		{ itemList.Clear(); }
 		itemList = null;
 		//아이템 리스트 null 해주기
 	}

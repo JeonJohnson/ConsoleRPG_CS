@@ -103,7 +103,7 @@ public class InputChecker : Component
                     tempStatus.status.curHp = tempStatus.status.fullHp;
                     tempStatus.status.Lv = 10;
                     tempStatus.status.dmg = 1;
-                    tempStatus.status.gold = 1000;
+                    tempStatus.status.gold = 10000;
                     Player playerScript = GameObjectManager.Instance.FindGameObjectByName("Player").GetComponent<Player>();
                     playerScript.SetStatus = tempStatus.status;
 
@@ -211,6 +211,7 @@ public class InputChecker : Component
         switch (selectNum)
         {
             case 1: //Attack
+            case 7:
                 {
                     if (curBattleState == eBattleProgress.End)
                     {
@@ -220,7 +221,8 @@ public class InputChecker : Component
 
                     if (curBattleState == eBattleProgress.Ing)
                     {
-                        Enums.eBattleResult temp = Battle();
+                        
+                        Enums.eBattleResult temp = Battle(selectNum);
 
                         if (temp == eBattleResult.Win)
                         {
@@ -278,7 +280,6 @@ public class InputChecker : Component
                 }
                 return eBattleResult.End;
 
-
             case 9:
                 {
                     GameManager.Instance.IsQuit = true;
@@ -292,12 +293,16 @@ public class InputChecker : Component
     }
 
 
-    eBattleResult Battle()
+    eBattleResult Battle(int cheat = 1)
     {
+        int playerDmg = player.Attack();
+
+        playerDmg = 500;
+
         //battleInfo.BattleInfoStr = "\n";
-        monster.Hit(player.Attack());
+        monster.Hit(playerDmg);
         battleInfo.BattleInfoStr = "\n";
-        battleInfo.BattleInfoStr = string.Format("{0} takes {1} dmg from {2}", monster.Name, player.Attack(), player.Name);
+        battleInfo.BattleInfoStr = string.Format("{0} takes {1} dmg from {2}", monster.Name, playerDmg, player.Name);
         //battleInfo.BattleInfoStr = 1.ToString();
 
         if (!monster.Death())
